@@ -40,8 +40,7 @@ registerAction("Show man page", "ctrl shift M") { event ->
 	}
 	if (term == null || term.isEmpty()) return
 
-
-	def manText = execute2("/usr/local/bin/man-text $term").stdout as String
+	def manText = execute2("${pluginPath}/man-plain-text", term).stdout as String
 	def (consoleView, closeAction) = showInConsole2(manText, "man $term", event.project, ConsoleViewContentType.NORMAL_OUTPUT)
 	consoleView.scrollTo(0)
 
@@ -51,8 +50,8 @@ registerAction("Show man page", "ctrl shift M") { event ->
 	lastCloseAction = closeAction
 }
 
-static execute2(String command) {
-	def cmdProc = Runtime.getRuntime().exec(command)
+static execute2(String... commandAndArgs) {
+	def cmdProc = Runtime.getRuntime().exec(commandAndArgs)
 	def stdout = ""
 	def stderr = ""
 
