@@ -12,26 +12,22 @@ def knBasePath = System.getProperty("user.home") + "/IdeaProjects/kotlin-native/
 registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event ->
     def project = event.project
     def popupMenuDescription = [
-            "gradle"             : { pasteGradleRepos(project) },
-            "log"                : { pasteLog(project) },
-            "shouldEqual"        : { pasteShouldEqual(project) },
-            "--"                 : Separator.instance,
-            "KString"            : { openInEditor("$knBasePath/runtime/src/main/cpp/KString.cpp", project) },
-            "backend/Collections": {
-                def virtualFile = openInEditor("$knBasePath/backend.native/build/stdlib/kotlin/collections/Collections.kt", project)
-                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(75, 0))
-            },
-            "runtime/Collections": {
-                def virtualFile = openInEditor("$knBasePath/runtime/src/main/kotlin/kotlin/collections/Collections.kt", project)
-                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(53, 0))
-            },
-            "Array.kt"           : { openInEditor("$knBasePath/runtime/src/main/kotlin/kotlin/Array.kt", project) },
-            "Array.cpp"          : {
-                def virtualFile = openInEditor("$knBasePath/runtime/src/main/cpp/Arrays.cpp", project)
-                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(59, 0))
+            "gradle"     : { pasteGradleRepos(project) },
+            "log"        : { pasteLog(project) },
+            "shouldEqual": { pasteShouldEqual(project) },
+            "--"         : Separator.instance,
+            "String.kt"  : { openInEditor("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", project) },
+            "KString"    : { openInEditor("$knBasePath/runtime/src/main/cpp/KString.cpp", project) },
+            "ncurses.kt" : {
+                def virtualFile = openInEditor("/Users/dko0618/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", project)
+                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(157, 0))
             },
     ]
     showPopupMenu(popupMenuDescription, "Snake")
+}
+
+registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
+    liveplugin.implementation.Actions.executeRunConfiguration("Build All", event.project)
 }
 
 static pasteGradleRepos(Project project) {
@@ -96,4 +92,4 @@ static pasteLog(Project project) {
     }
 }
 
-if (!isIdeStartup) show("Reloaded Kotlin snake popup")
+if (!isIdeStartup) show("Reloaded Kotlin/Native snake tools")
