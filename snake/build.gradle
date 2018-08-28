@@ -1,0 +1,28 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+		}
+	}
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
+	}
+}
+
+apply plugin: "konan"
+
+konanArtifacts {
+    program("snake") {
+        srcDir "src"
+        //libraries { artifact "ncurses" }
+    }
+    program("snakeTest") {
+        srcDir "src"
+        srcDir "test"
+        //libraries { artifact "ncurses" }
+    }
+    //interop("ncurses") {
+    //    defFile "ncurses.def"
+    //}
+}
