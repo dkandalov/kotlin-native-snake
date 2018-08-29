@@ -12,11 +12,14 @@ fun main(args: Array<String>) = memScoped {
     curs_set(0)
     halfdelay(2)
 
-    val snake = Snake(
-        cells = listOf(Cell(4, 0), Cell(3, 0), Cell(2, 0), Cell(1, 0), Cell(0, 0)),
-        direction = right
+    var game = Game(
+        width = 20,
+        height = 10,
+        snake = Snake(
+            cells = listOf(Cell(4, 0), Cell(3, 0), Cell(2, 0), Cell(1, 0), Cell(0, 0)),
+            direction = right
+        )
     )
-    var game = Game(20, 10, snake)
 
     val window = newwin(game.height + 2, game.width + 2, 0, 0)
     defer { delwin(window) }
@@ -62,9 +65,9 @@ data class Game(
 ) {
     val isOver =
         snake.tail.contains(snake.head) ||
-            snake.cells.any { it.x < 0 || it.x >= width || it.y < 0 || it.y >= height }
+        snake.cells.any { it.x < 0 || it.x >= width || it.y < 0 || it.y >= height }
 
-    val score = snake.cells.size * 10
+    val score = snake.cells.size
 
     fun update(direction: Direction?): Game {
         if (isOver) return this
