@@ -1,13 +1,13 @@
 buildscript {
-	repositories {
-		mavenCentral()
-		maven {
-			url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-		}
-	}
-	dependencies {
-		classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
-	}
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
+    }
 }
 
 apply plugin: "konan"

@@ -1,5 +1,4 @@
 import Direction.*
-import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -9,7 +8,7 @@ class SnakeTests {
         direction = right
     )
 
-    @Test fun `snake moved right`() {
+    @Test fun `snake moves right`() {
         assertEquals(
             actual = snake.move(),
             expected = Snake(

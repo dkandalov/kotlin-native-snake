@@ -12,7 +12,7 @@ def knBasePath = System.getProperty("user.home") + "/IdeaProjects/kotlin-native/
 registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event ->
     def project = event.project
     def popupMenuDescription = [
-            "gradle"     : { pasteGradleRepos(project) },
+            "gradle"     : { addNCursesToGradle(project) },
             "log"        : { pasteLog(project) },
             "shouldEqual": { pasteShouldEqual(project) },
             "--"         : Separator.instance,
@@ -30,22 +30,21 @@ registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
     liveplugin.implementation.Actions.executeRunConfiguration("Build All", event.project)
 }
 
-static pasteGradleRepos(Project project) {
-    def document = currentDocumentIn(project)
-    def editor = currentEditorIn(project)
+static addNCursesToGradle(Project project) {
+    def document = liveplugin.PluginUtil.document(findFileByName("build.gradle", project))
 
     runDocumentWriteAction(project, document) {
-        document.insertString(editor.caretModel.offset, """
+        document.text = """
 buildscript {
-	repositories {
-		mavenCentral()
-		maven {
-			url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-		}
-	}
-	dependencies {
-		classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
-	}
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
+    }
 }
 
 apply plugin: "konan"
@@ -53,13 +52,18 @@ apply plugin: "konan"
 konanArtifacts {
     program("snake") {
         srcDir "src"
+        //libraries { artifact "ncurses" }
     }
     program("snakeTest") {
         srcDir "src"
         srcDir "test"
+        //libraries { artifact "ncurses" }
     }
+    //interop("ncurses") {
+    //    defFile "ncurses.def"
+    //}
 }
-""")
+""".trim()
     }
 }
 
