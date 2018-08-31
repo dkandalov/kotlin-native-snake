@@ -1,6 +1,5 @@
 import Direction.*
-import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.*
 import platform.osx.*
 import kotlin.math.max
 import kotlin.random.Random
@@ -26,7 +25,7 @@ fun main(args: Array<String>) = memScoped {
 
     var c = 0
     while (c.toChar() != 'q') {
-        game.draw(window)
+        window.draw(game)
 
         c = wgetch(window)
         val direction = when (c.toChar()) {
@@ -41,20 +40,20 @@ fun main(args: Array<String>) = memScoped {
     }
 }
 
-fun Game.draw(window: CPointer<WINDOW>?) {
-    wclear(window)
-    box(window, 0, 0)
+fun CPointer<WINDOW>?.draw(game: Game) {
+    wclear(this)
+    box(this, 0, 0)
 
-    apples.cells.forEach { mvwprintw(window, it.y + 1, it.x + 1, ".") }
-    snake.tail.forEach { mvwprintw(window, it.y + 1, it.x + 1, "o") }
-    snake.head.let { mvwprintw(window, it.y + 1, it.x + 1, "Q") }
+    game.apples.cells.forEach { mvwprintw(this, it.y + 1, it.x + 1, ".") }
+    game.snake.head.let { mvwprintw(this, it.y + 1, it.x + 1, "Q") }
+    game.snake.tail.forEach { mvwprintw(this, it.y + 1, it.x + 1, "o") }
 
-    if (isOver) {
-        mvwprintw(window, 0, 4, "Game is Over")
-        mvwprintw(window, 1, 3, "Your score is $score")
+    if (game.isOver) {
+        mvwprintw(this, 0, 3, "Game is Over")
+        mvwprintw(this, 1, 4, "Your score is ${game.score}")
     }
 
-    wrefresh(window)
+    wrefresh(this)
 }
 
 data class Game(
@@ -71,7 +70,12 @@ data class Game(
 
     fun update(direction: Direction?): Game {
         if (isOver) return this
-        val (newSnake, newApples) = snake.turn(direction).move().eat(apples.grow())
+
+        val (newSnake, newApples) = snake
+            .turn(direction)
+            .move()
+            .eat(apples.grow())
+
         return copy(snake = newSnake, apples = newApples)
     }
 }
@@ -86,7 +90,7 @@ data class Snake(
 
     fun move(): Snake {
         val newHead = head.move(direction)
-        val newTail = if (eatenApples == 0) cells.dropLast(1) else cells
+        val newTail = if (eatenApples > 0) cells else cells.dropLast(1)
         return copy(
             cells = listOf(newHead) + newTail,
             eatenApples = max(eatenApples - 1, 0)

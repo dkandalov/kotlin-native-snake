@@ -1,2 +1,4 @@
+
+
 headers = /usr/include/ncurses.h
 linkerOpts = -lncurses
