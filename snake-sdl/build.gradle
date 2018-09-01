@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
+    }
+}
+
+apply plugin: "konan"
+
+konanArtifacts {
+    interop ('sdl') {
+        defFile 'sdl.def'
+        packageName 'sdl'
+
+        target 'macbook', {
+            includeDirs '/Library/Frameworks/SDL2.framework/Headers'
+        }
+        target 'linux', {
+            includeDirs '/usr/include/SDL2'
+        }
+        target 'raspberrypi', {
+            includeDirs "$konanUserDir/dependencies/target-sysroot-1-raspberrypi/usr/include/SDL2"
+        }
+        target 'mingw', {
+            includeDirs "${System.getenv("MINGW64_DIR")?:"c:/msys64/mingw64"}/include/SDL2"
+        }
+    }
+
+    program("snake") {
+        srcDir "src"
+        libraries { artifact "sdl" }
+    }
+
+    program("snakeTest") {
+        srcDir "src"
+        srcDir "test"
+        libraries { artifact "sdl" }
+    }
+}
+compileKonan {
+    doLast {
+        konanArtifacts.snake.forEach() { task ->
+            copy {
+                from 'resources'
+                into task.artifact.parentFile
+            }
+        }
+    }
+}
