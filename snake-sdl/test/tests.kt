@@ -37,13 +37,13 @@ class SnakeTests {
     }
 
     @Test fun `snake eats an apple`() {
-        val apples = Apples(20, 10, cells = listOf(Cell(2, 0)))
+        val apples = Apples(20, 10, cells = setOf(Cell(2, 0)))
 
         val (newSnake, newApples) = snake.eat(apples)
 
         assertEquals(
             actual = newApples.cells,
-            expected = emptyList()
+            expected = emptySet()
         )
         assertEquals(
             actual = newSnake.eatenApples,
@@ -63,7 +63,7 @@ class ApplesTests {
 
         assertEquals(
             actual = apples.grow().grow().grow().cells,
-            expected = listOf(Cell(x = 8, y = 4), Cell(x = 5, y = 5))
+            expected = setOf(Cell(x = 8, y = 4), Cell(x = 5, y = 5))
         )
     }
 }
