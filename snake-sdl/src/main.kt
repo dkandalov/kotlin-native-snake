@@ -54,25 +54,26 @@ class SdlUI(width: Int, height: Int) {
 
         game.snake.tail.dropLast(1).forEachIndexed { i, it ->
             val index = i + 1
-            val direction = direction(game.snake.cells[index - 1], it)
-            val nextDirection = direction(game.snake.cells[index + 1], it)
-            if (direction.isOpposite(nextDirection)) {
-                val bodyRect = when (direction) {
+            val direction = direction(from = game.snake.cells[index - 1], to = it)
+            val nextDirection = direction(from = game.snake.cells[index + 1], to = it)
+
+            val srcRect = if (direction.isOpposite(nextDirection)) {
+                when (direction) {
                     right, left -> sprites.bodyHRect
                     up, down    -> sprites.bodyVRect
                 }
-                sprites.render(bodyRect, cellRect(it))
             } else if ((direction == down && nextDirection == right) || (direction == right && nextDirection == down)) {
-                sprites.render(sprites.bodyDRRect, cellRect(it))
+                sprites.bodyDRRect
             } else if ((direction == up && nextDirection == right) || (direction == right && nextDirection == up)) {
-                sprites.render(sprites.bodyURRect, cellRect(it))
+                sprites.bodyURRect
             } else if ((direction == down && nextDirection == left) || (direction == left && nextDirection == down)) {
-                sprites.render(sprites.bodyDLRect, cellRect(it))
+                sprites.bodyDLRect
             } else if ((direction == up && nextDirection == left) || (direction == left && nextDirection == up)) {
-                sprites.render(sprites.bodyULRect, cellRect(it))
+                sprites.bodyULRect
             } else {
-                sprites.render(sprites.emptyRect, cellRect(it))
+                sprites.emptyRect
             }
+            sprites.render(srcRect, cellRect(it))
         }
 
         val tipRect = when (game.snake.cells.let { direction(it[it.size - 2], it.last()) }) {
@@ -104,12 +105,8 @@ class SdlUI(width: Int, height: Int) {
         SDL_RenderPresent(renderer)
     }
 
-    private fun direction(cell1: Cell, cell2: Cell): Direction = when {
-        cell1.x == cell2.x && cell1.y < cell2.y -> up
-        cell1.x == cell2.x && cell1.y > cell2.y -> down
-        cell1.x < cell2.x && cell1.y == cell2.y -> left
-        cell1.x > cell2.x && cell1.y == cell2.y -> right
-        else                                    -> error("")
+    fun delay() {
+        SDL_Delay(1000 / 60)
     }
 
     fun readCommands(): List<UserCommand> = memScoped {
@@ -140,7 +137,19 @@ class SdlUI(width: Int, height: Int) {
         arena.clear()
     }
 
-    private fun NativePlacement.cellRect(cell: Cell): SDL_Rect = allocRect(cell.x * Sprites.w, cell.y * Sprites.h, Sprites.w, Sprites.h)
+    private fun direction(from: Cell, to: Cell): Direction = when {
+        from.x == to.x && from.y < to.y -> up
+        from.x == to.x && from.y > to.y -> down
+        from.x < to.x && from.y == to.y -> left
+        from.x > to.x && from.y == to.y -> right
+        else                            -> error("")
+    }
+
+    private fun NativePlacement.cellRect(cell: Cell): SDL_Rect {
+        val x = cell.x * Sprites.w
+        val y = cell.y * Sprites.h
+        return allocRect(x, y, Sprites.w, Sprites.h)
+    }
 
     private fun renderStringCentered(y: Int, width: Int, s: String) {
         var x = (width / 2) - (s.length / 2)
@@ -311,9 +320,10 @@ fun main(args: Array<String>) = memScoped {
     var ticks = 0
     val speed = 10
     while (true) {
-        sdlUI.draw(game)
 
-        SDL_Delay(1000 / 60)
+        sdlUI.draw(game)
+        sdlUI.delay()
+
         ticks++
         if (ticks >= speed) {
             game = game.update()
