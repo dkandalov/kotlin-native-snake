@@ -55,40 +55,40 @@ class SdlUI(width: Int, height: Int) {
         game.snake.tail.dropLast(1).forEachIndexed { i, it ->
             val index = i + 1
             val direction = direction(from = game.snake.cells[index - 1], to = it)
-            val nextDirection = direction(from = game.snake.cells[index + 1], to = it)
+            val nextDirection = direction(from = it, to = game.snake.cells[index + 1])
 
-            val srcRect = if (direction.isOpposite(nextDirection)) {
+            val srcRect = if (direction == nextDirection) {
                 when (direction) {
-                    right, left -> sprites.bodyHRect
-                    up, down    -> sprites.bodyVRect
+                    right, left -> sprites.bodyHorRect
+                    up, down    -> sprites.bodyVertRect
                 }
-            } else if ((direction == down && nextDirection == right) || (direction == right && nextDirection == down)) {
-                sprites.bodyDRRect
-            } else if ((direction == up && nextDirection == right) || (direction == right && nextDirection == up)) {
-                sprites.bodyURRect
-            } else if ((direction == down && nextDirection == left) || (direction == left && nextDirection == down)) {
-                sprites.bodyDLRect
-            } else if ((direction == up && nextDirection == left) || (direction == left && nextDirection == up)) {
-                sprites.bodyULRect
+            } else if ((direction == left && nextDirection == down) || (direction == up && nextDirection == right)) {
+                sprites.bodyLeftDownRect
+            } else if ((direction == left && nextDirection == up) || (direction == down && nextDirection == right)) {
+                sprites.bodyLeftUpRect
+            } else if ((direction == right && nextDirection == down) || (direction == up && nextDirection == left)) {
+                sprites.bodyRightDownRect
+            } else if ((direction == right && nextDirection == up) || (direction == down && nextDirection == left)) {
+                sprites.bodyRightUpRect
             } else {
                 sprites.emptyRect
             }
             sprites.render(srcRect, cellRect(it))
         }
 
-        val tipRect = when (game.snake.cells.let { direction(it[it.size - 2], it.last()) }) {
-            up    -> sprites.tipURect
-            down  -> sprites.tipDRect
-            left  -> sprites.tipLRect
-            right -> sprites.tipRRect
+        val tipRect = when (game.snake.cells.let { direction(from = it.last(), to = it[it.size - 2]) }) {
+            up    -> sprites.tipUpRect
+            down  -> sprites.tipDownRect
+            left  -> sprites.tipLeftRect
+            right -> sprites.tipRightRect
         }
         sprites.render(tipRect, cellRect(game.snake.tail.last()))
 
         val headRect = when (game.snake.direction) {
-            up    -> sprites.headURect
-            down  -> sprites.headDRect
-            left  -> sprites.headLRect
-            right -> sprites.headRRect
+            up    -> sprites.headUpRect
+            down  -> sprites.headDownRect
+            left  -> sprites.headLeftRect
+            right -> sprites.headRightRect
         }
         sprites.render(headRect, cellRect(game.snake.head))
 
@@ -138,10 +138,10 @@ class SdlUI(width: Int, height: Int) {
     }
 
     private fun direction(from: Cell, to: Cell): Direction = when {
-        from.x == to.x && from.y < to.y -> up
-        from.x == to.x && from.y > to.y -> down
-        from.x < to.x && from.y == to.y -> left
-        from.x > to.x && from.y == to.y -> right
+        from.x == to.x && from.y > to.y -> up
+        from.x == to.x && from.y < to.y -> down
+        from.x > to.x && from.y == to.y -> left
+        from.x < to.x && from.y == to.y -> right
         else                            -> error("")
     }
 
@@ -242,22 +242,22 @@ class SdlUI(width: Int, height: Int) {
         private val texture = renderer.loadTexture("snake-graphics.bmp", arena)
         private val grassTexture = renderer.loadTexture("grass.bmp", arena)
 
-        val headURect = textureRect(3, 0)
-        val headRRect = textureRect(4, 0)
-        val headLRect = textureRect(3, 1)
-        val headDRect = textureRect(4, 1)
+        val headUpRect = textureRect(3, 0)
+        val headRightRect = textureRect(4, 0)
+        val headLeftRect = textureRect(3, 1)
+        val headDownRect = textureRect(4, 1)
 
-        val tipURect = textureRect(3, 2)
-        val tipRRect = textureRect(4, 2)
-        val tipLRect = textureRect(3, 3)
-        val tipDRect = textureRect(4, 3)
+        val tipUpRect = textureRect(3, 2)
+        val tipRightRect = textureRect(4, 2)
+        val tipLeftRect = textureRect(3, 3)
+        val tipDownRect = textureRect(4, 3)
 
-        val bodyHRect = textureRect(1, 0)
-        val bodyVRect = textureRect(2, 1)
-        val bodyDRRect = textureRect(0, 0)
-        val bodyURRect = textureRect(0, 1)
-        val bodyDLRect = textureRect(2, 0)
-        val bodyULRect = textureRect(2, 2)
+        val bodyHorRect = textureRect(1, 0)
+        val bodyVertRect = textureRect(2, 1)
+        val bodyLeftDownRect = textureRect(0, 0)
+        val bodyLeftUpRect = textureRect(0, 1)
+        val bodyRightDownRect = textureRect(2, 0)
+        val bodyRightUpRect = textureRect(2, 2)
 
         val appleRect = textureRect(0, 3)
         val emptyRect = textureRect(0, 2)
@@ -400,7 +400,7 @@ data class Snake(
 data class Apples(
     val fieldWidth: Int,
     val fieldHeight: Int,
-    val cells: List<Cell> = emptyList(),
+    val cells: Set<Cell> = emptySet(),
     val growthSpeed: Int = 3,
     val random: Random = Random
 ) {
