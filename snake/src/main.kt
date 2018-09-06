@@ -1,7 +1,9 @@
 import Direction.*
-import kotlinx.cinterop.*
+import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
 import platform.osx.*
-import kotlin.math.max
+import platform.posix.getpid
+import platform.posix.pid_t
 import kotlin.random.Random
 
 fun main(args: Array<String>) = memScoped {
@@ -20,7 +22,7 @@ fun main(args: Array<String>) = memScoped {
         )
     )
 
-    val window = newwin(game.height + 2, game.width + 2, 0, 0)
+    val window = newwin(game.height + 2, game.width + 2, 0, 0)!!
     defer { delwin(window) }
 
     var c = 0
@@ -29,10 +31,10 @@ fun main(args: Array<String>) = memScoped {
 
         c = wgetch(window)
         val direction = when (c.toChar()) {
-            'i' -> up
-            'j' -> left
-            'k' -> down
-            'l' -> right
+            'i'  -> up
+            'j'  -> left
+            'k'  -> down
+            'l'  -> right
             else -> null
         }
 
@@ -40,17 +42,17 @@ fun main(args: Array<String>) = memScoped {
     }
 }
 
-fun CPointer<WINDOW>?.draw(game: Game) {
+fun CPointer<WINDOW>.draw(game: Game) {
     wclear(this)
     box(this, 0, 0)
 
     game.apples.cells.forEach { mvwprintw(this, it.y + 1, it.x + 1, ".") }
-    game.snake.head.let { mvwprintw(this, it.y + 1, it.x + 1, "Q") }
     game.snake.tail.forEach { mvwprintw(this, it.y + 1, it.x + 1, "o") }
+    game.snake.head.let { mvwprintw(this, it.y + 1, it.x + 1, "Q") }
 
     if (game.isOver) {
-        mvwprintw(this, 0, 3, "Game is Over")
-        mvwprintw(this, 1, 4, "Your score is ${game.score}")
+        mvwprintw(this, 0, 4, "Game is Over")
+        mvwprintw(this, 1, 3, "Your score is ${game.score}")
     }
 
     wrefresh(this)
@@ -62,11 +64,10 @@ data class Game(
     val snake: Snake,
     val apples: Apples = Apples(width, height)
 ) {
+    val score = snake.cells.size
     val isOver =
         snake.tail.contains(snake.head) ||
         snake.cells.any { it.x < 0 || it.x >= width || it.y < 0 || it.y >= height }
-
-    val score = snake.cells.size
 
     fun update(direction: Direction?): Game {
         if (isOver) return this
@@ -90,10 +91,10 @@ data class Snake(
 
     fun move(): Snake {
         val newHead = head.move(direction)
-        val newTail = if (eatenApples > 0) cells else cells.dropLast(1)
+        val newTail = if (eatenApples == 0) cells.dropLast(1) else cells
         return copy(
             cells = listOf(newHead) + newTail,
-            eatenApples = max(eatenApples - 1, 0)
+            eatenApples = maxOf(eatenApples - 1, 0)
         )
     }
 
@@ -112,24 +113,28 @@ data class Snake(
 }
 
 data class Apples(
-    val fieldWidth: Int,
-    val fieldHeight: Int,
-    val cells: List<Cell> = emptyList(),
+    val width: Int,
+    val height: Int,
+    val cells: Set<Cell> = emptySet(),
     val growthSpeed: Int = 3,
     val random: Random = Random
 ) {
     fun grow(): Apples {
         if (random.nextInt(growthSpeed) != 0) return this
-        return copy(cells = cells + Cell(random.nextInt(fieldWidth), random.nextInt(fieldHeight)))
+        return copy(
+            cells = cells + Cell(random.nextInt(width), random.nextInt(height))
+        )
     }
 }
 
 data class Cell(val x: Int, val y: Int) {
-    fun move(direction: Direction) = Cell(x + direction.dx, y + direction.dy)
+    fun move(direction: Direction) =
+        Cell(x + direction.dx, y + direction.dy)
 }
 
 enum class Direction(val dx: Int, val dy: Int) {
     up(0, -1), down(0, 1), left(-1, 0), right(1, 0);
 
-    fun isOpposite(that: Direction) = dx + that.dx == 0 && dy + that.dy == 0
+    fun isOpposite(that: Direction) =
+        dx + that.dx == 0 || dy + that.dy == 0
 }

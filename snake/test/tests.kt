@@ -2,6 +2,7 @@ import Direction.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+
 class SnakeTests {
     private val snake = Snake(
         cells = listOf(Cell(2, 0), Cell(1, 0), Cell(0, 0)),
