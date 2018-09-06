@@ -7,21 +7,22 @@ import liveplugin.PluginUtil
 
 import static liveplugin.PluginUtil.*
 
-def knBasePath = System.getProperty("user.home") + "/IdeaProjects/kotlin-native/"
+def userHome = System.getProperty("user.home")
+def knBasePath = userHome + "/IdeaProjects/kotlin-native/"
 
 registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event ->
     def project = event.project
     def popupMenuDescription = [
             "gradle"     : { addNCursesToGradle(project) },
-            "log"        : { pasteLog(project) },
-            "shouldEqual": { pasteShouldEqual(project) },
-            "--"         : Separator.instance,
             "String.kt"  : { openInEditor("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", project) },
             "KString"    : { openInEditor("$knBasePath/runtime/src/main/cpp/KString.cpp", project) },
             "ncurses.kt" : {
-                def virtualFile = openInEditor("/Users/dko0618/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", project)
-                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(157, 0))
+                def virtualFile = openInEditor("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", project)
+                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(539, 0))
             },
+            "log"        : { pasteLog(project) },
+//            "shouldEqual": { pasteShouldEqual(project) },
+//            "--"         : Separator.instance,
     ]
     showPopupMenu(popupMenuDescription, "Snake")
 }
@@ -52,16 +53,16 @@ apply plugin: "konan"
 konanArtifacts {
     program("snake") {
         srcDir "src"
-        //libraries { artifact "ncurses" }
+        libraries { artifact "ncurses" }
     }
     program("snakeTest") {
         srcDir "src"
         srcDir "test"
-        //libraries { artifact "ncurses" }
+        libraries { artifact "ncurses" }
     }
-    //interop("ncurses") {
-    //    defFile "ncurses.def"
-    //}
+    interop("ncurses") {
+        defFile "ncurses.def"
+    }
 }
 """.trim()
     }
