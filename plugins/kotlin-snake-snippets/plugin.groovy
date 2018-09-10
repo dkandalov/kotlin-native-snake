@@ -18,9 +18,10 @@ registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event 
             "KString"    : { openInEditor("$knBasePath/runtime/src/main/cpp/KString.cpp", project) },
             "ncurses.kt" : {
                 def virtualFile = openInEditor("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", project)
-                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(539, 0))
+                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(679, 0))
             },
             "log"        : { pasteLog(project) },
+            "valgrid"    : { openInEditor("$userHome/IdeaProjects/kotlin-native-snake/massif.out.printed", project) },
 //            "shouldEqual": { pasteShouldEqual(project) },
 //            "--"         : Separator.instance,
     ]

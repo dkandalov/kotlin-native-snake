@@ -1,0 +1,990 @@
+--------------------------------------------------------------------------------
+Command:            cmake-build-debug/snake.kexe
+Massif arguments:   --massif-out-file=massif.out --time-unit=B
+ms_print arguments: massif.out
+--------------------------------------------------------------------------------
+
+
+    MB
+1.162^                   ##                                                   
+     |   @ :::    :: ::  # :     :   :   :     :::     :     :     :   :  :   
+     |   @:: :    :::: ::# :     :   ::  :  :::: :    ::    :: : : : : : :: ::
+     |   @:: ::  ::::: ::# ::  ::::::::: :::: :: :  ::::::::::@::::::: :::::::
+     |   @:: ::::::::: ::# : ::::::::::: :: : :: :::: ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     |  :@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     | ::@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     | ::@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     | ::@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     | ::@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+     | ::@:: :: :::::: ::# : :::::::::::@:: : :: :: : ::::::::@:::::::@::::::@
+   0 +----------------------------------------------------------------------->MB
+     0                                                                   56.56
+
+Number of snapshots: 75
+ Detailed snapshots: [3, 17 (peak), 31, 54, 64, 74]
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1        851,200          330,464          329,448         1,016            0
+  2      2,076,552          915,656          906,471         9,185            0
+  3      2,899,480        1,206,392        1,149,925        56,467            0
+95.32% (1,149,925B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.75% (600,128B) 0x1002BE0FC: allocBuckets(void*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+| ->44.31% (534,576B) 0x1002BEAC0: _NXMapRehash(_NXMapTable*) (in /usr/lib/libobjc.A.dylib)
+| | ->44.31% (534,576B) 0x1002BE953: NXMapInsert (in /usr/lib/libobjc.A.dylib)
+| |   ->43.46% (524,304B) 0x1002BC445: objc_opt::objc_selopt_t::get(char const*) const (in /usr/lib/libobjc.A.dylib)
+| |   | ->43.46% (524,304B) 0x1002BCE60: _read_images (in /usr/lib/libobjc.A.dylib)
+| |   |   ->43.46% (524,304B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+| |   |     ->43.46% (524,304B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+| |   |       ->43.46% (524,304B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+| |   |         ->43.46% (524,304B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+| |   |           ->43.46% (524,304B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+| |   |             ->43.46% (524,304B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+| |   |               ->43.46% (524,304B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                 ->43.46% (524,304B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                   ->43.46% (524,304B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+| |   |                     ->43.46% (524,304B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                       ->43.46% (524,304B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                         ->43.46% (524,304B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                           ->43.46% (524,304B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                             ->43.46% (524,304B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                               ->43.46% (524,304B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+| |   |                                 ->43.46% (524,304B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+| |   |                                   ->43.46% (524,304B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+| |   |                                     ->43.46% (524,304B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+| |   |                                       ->43.46% (524,304B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+| |   |                                         
+| |   ->00.85% (10,272B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->05.43% (65,552B) 0x1002BDA17: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|   ->05.43% (65,552B) 0x1002BD8F9: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|     ->05.43% (65,552B) 0x1002BCBFB: _read_images (in /usr/lib/libobjc.A.dylib)
+|     | ->05.43% (65,552B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+|     |   ->05.43% (65,552B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+|     |     ->05.43% (65,552B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+|     |       ->05.43% (65,552B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+|     |         ->05.43% (65,552B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+|     |           ->05.43% (65,552B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+|     |             ->05.43% (65,552B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+|     |               ->05.43% (65,552B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+|     |                 ->05.43% (65,552B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+|     |                   ->05.43% (65,552B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                     ->05.43% (65,552B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                       ->05.43% (65,552B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                         ->05.43% (65,552B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                           ->05.43% (65,552B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                             ->05.43% (65,552B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+|     |                               ->05.43% (65,552B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+|     |                                 ->05.43% (65,552B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+|     |                                   ->05.43% (65,552B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+|     |                                     ->05.43% (65,552B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+|     |                                       
+|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|     
+->18.43% (222,336B) 0x1010F1FD7: newwin (in /usr/lib/libncurses.5.4.dylib)
+| ->05.97% (72,000B) 0x1010F516D: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->05.97% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->05.97% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->05.97% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->05.97% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->05.97% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->05.97% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->05.97% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->05.97% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->05.97% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->05.97% (72,000B) 0x1010F5199: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->05.97% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->05.97% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->05.97% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->05.97% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->05.97% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->05.97% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->05.97% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->05.97% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->05.97% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->05.97% (72,000B) 0x1010F52EE: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->05.97% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->05.97% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->05.97% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->05.97% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->05.97% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->05.97% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->05.97% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->05.97% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->05.97% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->00.53% (6,336B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->11.80% (142,392B) 0x100048130: AllocInstance (in cmake-build-debug/snake.kexe)
+| ->03.55% (42,784B) in 45 places, all below massif's threshold (1.00%)
+| | 
+| ->03.44% (41,480B) 0x100024B6A: kfun:kotlin.Array.iterator()kotlin.collections.Iterator<
+| | ->01.72% (20,760B) 0x1000253B3: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:145)
+| | | ->01.72% (20,760B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | |   ->01.72% (20,760B) in 3 places, all below massif's threshold (1.00%)
+| | |     
+| | ->01.72% (20,720B) 0x100025741: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:152)
+| |   ->01.72% (20,720B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| |     ->01.72% (20,720B) in 3 places, all below massif's threshold (1.00%)
+| |       
+| ->02.07% (24,912B) 0x100057E6A: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | ->02.07% (24,912B) in 3 places, all below massif's threshold (1.00%)
+| |   
+| ->01.38% (16,608B) 0x10002447D: kfun:kotlinx.cinterop.<get-cstr>@kotlin.String.()kotlinx.cinterop.CValues<kotlinx.cinterop.ByteVarOf<kotlin.Byte>> (Utils.kt:352)
+| | ->01.38% (16,608B) 0x100057F9E: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| |   ->01.38% (16,608B) in 3 places, all below massif's threshold (1.00%)
+| |     
+| ->01.38% (16,608B) 0x100025363: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:132)
+|   ->01.38% (16,608B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+|     ->01.38% (16,608B) in 3 places, all below massif's threshold (1.00%)
+|       
+->05.13% (61,829B) in 90 places, all below massif's threshold (1.00%)
+| 
+->03.65% (44,008B) 0x10004F38C: AllocArrayInstance (in cmake-build-debug/snake.kexe)
+| ->02.75% (33,216B) 0x100058006: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | ->01.31% (15,808B) 0x1000097ED: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:49)
+| | | ->01.31% (15,808B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   ->01.31% (15,808B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |     ->01.31% (15,808B) 0x100008475: Konan_start (start.kt:29)
+| | |       ->01.31% (15,808B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |         ->01.31% (15,808B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |           
+| | ->01.22% (14,720B) 0x100009599: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:48)
+| | | ->01.22% (14,720B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   ->01.22% (14,720B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |     ->01.22% (14,720B) 0x100008475: Konan_start (start.kt:29)
+| | |       ->01.22% (14,720B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |         ->01.22% (14,720B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |           
+| | ->00.22% (2,688B) in 1+ places, all below ms_print's threshold (01.00%)
+| | 
+| ->00.89% (10,792B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->02.72% (32,768B) 0x100044EF2: InitMemory (in cmake-build-debug/snake.kexe)
+| ->02.72% (32,768B) 0x100044A39: Kotlin_initRuntimeIfNeeded (in cmake-build-debug/snake.kexe)
+|   ->02.72% (32,768B) 0x10000835F: main (in cmake-build-debug/snake.kexe)
+|     
+->01.47% (17,792B) 0x1002BEBA3: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+| ->01.47% (17,792B) in 6 places, all below massif's threshold (1.00%)
+|   
+->01.36% (16,384B) 0x100046493: std::__1::deque<ContainerHeader*, KonanAllocator<ContainerHeader*> >::__add_front_capacity() (in cmake-build-debug/snake.kexe)
+| ->01.36% (16,384B) in 2 places, all below massif's threshold (1.00%)
+|   
+->01.02% (12,288B) 0x10004642D: std::__1::deque<ContainerHeader*, KonanAllocator<ContainerHeader*> >::__add_front_capacity() (in cmake-build-debug/snake.kexe)
+  ->01.02% (12,288B) 0x10004547B: GarbageCollect (in cmake-build-debug/snake.kexe)
+    ->01.02% (12,288B) 0x100046977: ReleaseRef(ObjHeader const*) (in cmake-build-debug/snake.kexe)
+      ->01.02% (12,288B) 0x1000548DB: LeaveFrame (in cmake-build-debug/snake.kexe)
+        ->01.02% (12,288B) 0x100024B96: kfun:kotlin.Array.iterator()kotlin.collections.Iterator<
+          ->01.02% (12,288B) 0x1000253B3: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:145)
+            ->01.02% (12,288B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+              ->01.02% (12,288B) 0x100009599: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:48)
+                ->01.02% (12,288B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+                  ->01.02% (12,288B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+                    ->01.02% (12,288B) 0x100008475: Konan_start (start.kt:29)
+                      ->01.02% (12,288B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+                        ->01.02% (12,288B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+                          
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  4      4,012,696        1,113,592        1,073,491        40,101            0
+  5      4,894,792        1,190,888        1,130,477        60,411            0
+  6      5,977,912        1,211,304        1,153,157        58,147            0
+  7      6,605,496        1,072,936        1,038,027        34,909            0
+  8      7,351,992          980,024          964,301        15,723            0
+  9      8,260,984        1,014,744          993,101        21,643            0
+ 10      9,272,792        1,048,104        1,020,381        27,723            0
+ 11     10,001,968        1,158,976        1,105,085        53,891            0
+ 12     11,047,416        1,159,592        1,105,747        53,845            0
+ 13     12,324,456        1,127,816        1,085,333        42,483            0
+ 14     13,136,632        1,160,536        1,106,789        53,747            0
+ 15     14,412,880        1,144,064        1,098,939        45,125            0
+ 16     15,224,992        1,149,168        1,097,995        51,173            0
+ 17     16,466,792        1,218,552        1,159,645        58,907            0
+95.17% (1,159,645B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.25% (600,128B) 0x1002BE0FC: allocBuckets(void*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+| ->43.87% (534,576B) 0x1002BEAC0: _NXMapRehash(_NXMapTable*) (in /usr/lib/libobjc.A.dylib)
+| | ->43.87% (534,576B) 0x1002BE953: NXMapInsert (in /usr/lib/libobjc.A.dylib)
+| |   ->43.03% (524,304B) 0x1002BC445: objc_opt::objc_selopt_t::get(char const*) const (in /usr/lib/libobjc.A.dylib)
+| |   | ->43.03% (524,304B) 0x1002BCE60: _read_images (in /usr/lib/libobjc.A.dylib)
+| |   |   ->43.03% (524,304B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+| |   |     ->43.03% (524,304B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+| |   |       ->43.03% (524,304B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+| |   |         ->43.03% (524,304B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+| |   |           ->43.03% (524,304B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+| |   |             ->43.03% (524,304B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+| |   |               ->43.03% (524,304B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                 ->43.03% (524,304B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                   ->43.03% (524,304B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+| |   |                     ->43.03% (524,304B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                       ->43.03% (524,304B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                         ->43.03% (524,304B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                           ->43.03% (524,304B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                             ->43.03% (524,304B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                               ->43.03% (524,304B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+| |   |                                 ->43.03% (524,304B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+| |   |                                   ->43.03% (524,304B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+| |   |                                     ->43.03% (524,304B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+| |   |                                       ->43.03% (524,304B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+| |   |                                         
+| |   ->00.84% (10,272B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->05.38% (65,552B) 0x1002BDA17: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|   ->05.38% (65,552B) 0x1002BD8F9: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|     ->05.38% (65,552B) 0x1002BCBFB: _read_images (in /usr/lib/libobjc.A.dylib)
+|     | ->05.38% (65,552B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+|     |   ->05.38% (65,552B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+|     |     ->05.38% (65,552B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+|     |       ->05.38% (65,552B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+|     |         ->05.38% (65,552B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+|     |           ->05.38% (65,552B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+|     |             ->05.38% (65,552B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+|     |               ->05.38% (65,552B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+|     |                 ->05.38% (65,552B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+|     |                   ->05.38% (65,552B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                     ->05.38% (65,552B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                       ->05.38% (65,552B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                         ->05.38% (65,552B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                           ->05.38% (65,552B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                             ->05.38% (65,552B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+|     |                               ->05.38% (65,552B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+|     |                                 ->05.38% (65,552B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+|     |                                   ->05.38% (65,552B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+|     |                                     ->05.38% (65,552B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+|     |                                       
+|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|     
+->18.25% (222,336B) 0x1010F1FD7: newwin (in /usr/lib/libncurses.5.4.dylib)
+| ->05.91% (72,000B) 0x1010F516D: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->05.91% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->05.91% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->05.91% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->05.91% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->05.91% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->05.91% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->05.91% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->05.91% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->05.91% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->05.91% (72,000B) 0x1010F5199: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->05.91% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->05.91% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->05.91% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->05.91% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->05.91% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->05.91% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->05.91% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->05.91% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->05.91% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->05.91% (72,000B) 0x1010F52EE: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->05.91% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->05.91% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->05.91% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->05.91% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->05.91% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->05.91% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->05.91% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->05.91% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->05.91% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->00.52% (6,336B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->11.34% (138,232B) 0x100048130: AllocInstance (in cmake-build-debug/snake.kexe)
+| ->04.20% (51,240B) 0x100024B6A: kfun:kotlin.Array.iterator()kotlin.collections.Iterator<
+| | ->02.10% (25,640B) 0x1000253B3: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:145)
+| | | ->02.10% (25,640B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | |   ->01.06% (12,960B) 0x100009599: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:48)
+| | |   | ->01.06% (12,960B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   |   ->01.06% (12,960B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |   |     ->01.06% (12,960B) 0x100008475: Konan_start (start.kt:29)
+| | |   |       ->01.06% (12,960B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |   |         ->01.06% (12,960B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |   |           
+| | |   ->01.01% (12,320B) 0x1000097ED: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:49)
+| | |   | ->01.01% (12,320B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   |   ->01.01% (12,320B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |   |     ->01.01% (12,320B) 0x100008475: Konan_start (start.kt:29)
+| | |   |       ->01.01% (12,320B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |   |         ->01.01% (12,320B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |   |           
+| | |   ->00.03% (360B) in 1+ places, all below ms_print's threshold (01.00%)
+| | |   
+| | ->02.10% (25,600B) 0x100025741: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:152)
+| |   ->02.10% (25,600B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| |     ->01.06% (12,960B) 0x100009599: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:48)
+| |     | ->01.06% (12,960B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| |     |   ->01.06% (12,960B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |     |     ->01.06% (12,960B) 0x100008475: Konan_start (start.kt:29)
+| |     |       ->01.06% (12,960B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |     |         ->01.06% (12,960B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |     |           
+| |     ->01.01% (12,280B) 0x1000097ED: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:49)
+| |     | ->01.01% (12,280B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| |     |   ->01.01% (12,280B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |     |     ->01.01% (12,280B) 0x100008475: Konan_start (start.kt:29)
+| |     |       ->01.01% (12,280B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |     |         ->01.01% (12,280B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |     |           
+| |     ->00.03% (360B) in 1+ places, all below ms_print's threshold (01.00%)
+| |     
+| ->02.52% (30,768B) 0x100057E6A: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | ->01.28% (15,552B) 0x100009599: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:48)
+| | | ->01.28% (15,552B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   ->01.28% (15,552B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |     ->01.28% (15,552B) 0x100008475: Konan_start (start.kt:29)
+| | |       ->01.28% (15,552B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |         ->01.28% (15,552B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |           
+| | ->01.21% (14,784B) 0x1000097ED: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:49)
+| | | ->01.21% (14,784B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   ->01.21% (14,784B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |     ->01.21% (14,784B) 0x100008475: Konan_start (start.kt:29)
+| | |       ->01.21% (14,784B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |         ->01.21% (14,784B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |           
+| | ->00.04% (432B) in 1+ places, all below ms_print's threshold (01.00%)
+| | 
+| ->01.68% (20,512B) 0x100025363: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:132)
+| | ->01.68% (20,512B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| |   ->01.68% (20,512B) in 3 places, all below massif's threshold (1.00%)
+| |     
+| ->01.68% (20,480B) 0x10002447D: kfun:kotlinx.cinterop.<get-cstr>@kotlin.String.()kotlinx.cinterop.CValues<kotlinx.cinterop.ByteVarOf<kotlin.Byte>> (Utils.kt:352)
+| | ->01.68% (20,480B) 0x100057F9E: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| |   ->01.68% (20,480B) in 3 places, all below massif's threshold (1.00%)
+| |     
+| ->01.25% (15,232B) in 45 places, all below massif's threshold (1.00%)
+|   
+->05.07% (61,765B) in 91 places, all below massif's threshold (1.00%)
+| 
+->04.42% (53,856B) 0x10004F38C: AllocArrayInstance (in cmake-build-debug/snake.kexe)
+| ->03.37% (41,024B) 0x100058006: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | ->01.70% (20,736B) 0x100009599: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:48)
+| | | ->01.70% (20,736B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   ->01.70% (20,736B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |     ->01.70% (20,736B) 0x100008475: Konan_start (start.kt:29)
+| | |       ->01.70% (20,736B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |         ->01.70% (20,736B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |           
+| | ->01.62% (19,712B) 0x1000097ED: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:49)
+| | | ->01.62% (19,712B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+| | |   ->01.62% (19,712B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| | |     ->01.62% (19,712B) 0x100008475: Konan_start (start.kt:29)
+| | |       ->01.62% (19,712B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| | |         ->01.62% (19,712B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| | |           
+| | ->00.05% (576B) in 1+ places, all below ms_print's threshold (01.00%)
+| | 
+| ->01.05% (12,832B) in 11 places, all below massif's threshold (1.00%)
+|   
+->02.69% (32,768B) 0x100044EF2: InitMemory (in cmake-build-debug/snake.kexe)
+| ->02.69% (32,768B) 0x100044A39: Kotlin_initRuntimeIfNeeded (in cmake-build-debug/snake.kexe)
+|   ->02.69% (32,768B) 0x10000835F: main (in cmake-build-debug/snake.kexe)
+|     
+->02.69% (32,768B) 0x100046674: std::__1::deque<ContainerHeader*, KonanAllocator<ContainerHeader*> >::__add_front_capacity() (in cmake-build-debug/snake.kexe)
+| ->02.69% (32,768B) 0x10004547B: GarbageCollect (in cmake-build-debug/snake.kexe)
+|   ->02.69% (32,768B) 0x100046977: ReleaseRef(ObjHeader const*) (in cmake-build-debug/snake.kexe)
+|     ->02.69% (32,768B) 0x1000548DB: LeaveFrame (in cmake-build-debug/snake.kexe)
+|       ->02.69% (32,768B) 0x100024DA7: kfun:kotlin.IteratorImpl.hasNext
+|       | ->02.69% (32,768B) 0x100025415: kfun:kotlinx.cinterop.callWithVarargs(konan.internal.NativePtr;konan.internal.NativePtr;kotlin.Int;kotlin.Array<out_kotlin.Any?>;kotlin.Array<out_kotlin.Any?>?;kotlinx.cinterop.AutofreeScope) (Varargs.kt:145)
+|       |   ->02.69% (32,768B) 0x100058145: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+|       |     ->02.69% (32,768B) 0x1000097ED: kfun:draw@kotlinx.cinterop.CPointer<cnames.structs._win_st>.(Game) (main.kt:49)
+|       |       ->02.69% (32,768B) 0x100008B12: kfun:main(kotlin.Array<kotlin.String>) (main.kt:30)
+|       |         ->02.69% (32,768B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+|       |           ->02.69% (32,768B) 0x100008475: Konan_start (start.kt:29)
+|       |             ->02.69% (32,768B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+|       |               ->02.69% (32,768B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+|       |                 
+|       ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|       
+->01.46% (17,792B) 0x1002BEBA3: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+  ->01.46% (17,792B) in 6 places, all below massif's threshold (1.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 18     17,377,016        1,163,464        1,110,059        53,405            0
+ 19     18,059,720        1,048,296        1,018,771        29,525            0
+ 20     18,969,984        1,001,744          981,173        20,571            0
+ 21     20,109,216        1,028,832        1,002,939        25,893            0
+ 22     21,247,056        1,051,904        1,021,221        30,683            0
+ 23     21,929,760        1,059,488        1,029,467        30,021            0
+ 24     22,840,208        1,217,248        1,158,803        58,445            0
+ 25     23,522,928        1,095,712        1,055,331        40,381            0
+ 26     24,436,304        1,054,544        1,022,933        31,611            0
+ 27     25,119,008        1,057,248        1,028,005        29,243            0
+ 28     26,029,288        1,212,888        1,154,781        58,107            0
+ 29     26,715,144        1,101,464        1,060,117        41,347            0
+ 30     27,728,688        1,072,160        1,038,019        34,141            0
+ 31     28,404,376          974,744          961,141        13,603            0
+98.60% (961,141B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->61.57% (600,128B) 0x1002BE0FC: allocBuckets(void*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+| ->54.84% (534,576B) 0x1002BEAC0: _NXMapRehash(_NXMapTable*) (in /usr/lib/libobjc.A.dylib)
+| | ->54.84% (534,576B) 0x1002BE953: NXMapInsert (in /usr/lib/libobjc.A.dylib)
+| |   ->53.79% (524,304B) 0x1002BC445: objc_opt::objc_selopt_t::get(char const*) const (in /usr/lib/libobjc.A.dylib)
+| |   | ->53.79% (524,304B) 0x1002BCE60: _read_images (in /usr/lib/libobjc.A.dylib)
+| |   |   ->53.79% (524,304B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+| |   |     ->53.79% (524,304B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+| |   |       ->53.79% (524,304B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+| |   |         ->53.79% (524,304B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+| |   |           ->53.79% (524,304B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+| |   |             ->53.79% (524,304B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+| |   |               ->53.79% (524,304B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                 ->53.79% (524,304B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                   ->53.79% (524,304B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+| |   |                     ->53.79% (524,304B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                       ->53.79% (524,304B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                         ->53.79% (524,304B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                           ->53.79% (524,304B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                             ->53.79% (524,304B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                               ->53.79% (524,304B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+| |   |                                 ->53.79% (524,304B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+| |   |                                   ->53.79% (524,304B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+| |   |                                     ->53.79% (524,304B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+| |   |                                       ->53.79% (524,304B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+| |   |                                         
+| |   ->01.05% (10,272B) in 2 places, all below massif's threshold (1.00%)
+| |     
+| ->06.73% (65,552B) 0x1002BDA17: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|   ->06.73% (65,552B) 0x1002BD8F9: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|     ->06.73% (65,552B) 0x1002BCBFB: _read_images (in /usr/lib/libobjc.A.dylib)
+|     | ->06.73% (65,552B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+|     |   ->06.73% (65,552B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+|     |     ->06.73% (65,552B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+|     |       ->06.73% (65,552B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+|     |         ->06.73% (65,552B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+|     |           ->06.73% (65,552B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+|     |             ->06.73% (65,552B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+|     |               ->06.73% (65,552B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+|     |                 ->06.73% (65,552B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+|     |                   ->06.73% (65,552B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                     ->06.73% (65,552B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                       ->06.73% (65,552B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                         ->06.73% (65,552B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                           ->06.73% (65,552B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                             ->06.73% (65,552B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+|     |                               ->06.73% (65,552B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+|     |                                 ->06.73% (65,552B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+|     |                                   ->06.73% (65,552B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+|     |                                     ->06.73% (65,552B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+|     |                                       
+|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|     
+->22.81% (222,336B) 0x1010F1FD7: newwin (in /usr/lib/libncurses.5.4.dylib)
+| ->07.39% (72,000B) 0x1010F516D: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.39% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.39% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.39% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.39% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.39% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.39% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.39% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.39% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.39% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->07.39% (72,000B) 0x1010F5199: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.39% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.39% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.39% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.39% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.39% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.39% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.39% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.39% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.39% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->07.39% (72,000B) 0x1010F52EE: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.39% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.39% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.39% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.39% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.39% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.39% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.39% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.39% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.39% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->00.65% (6,336B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->06.70% (65,324B) in 92 places, all below massif's threshold (1.00%)
+| 
+->03.36% (32,768B) 0x100044EF2: InitMemory (in cmake-build-debug/snake.kexe)
+| ->03.36% (32,768B) 0x100044A39: Kotlin_initRuntimeIfNeeded (in cmake-build-debug/snake.kexe)
+|   ->03.36% (32,768B) 0x10000835F: main (in cmake-build-debug/snake.kexe)
+|     
+->01.83% (17,792B) 0x1002BEBA3: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+| ->01.83% (17,792B) in 6 places, all below massif's threshold (1.00%)
+|   
+->01.24% (12,072B) 0x100048130: AllocInstance (in cmake-build-debug/snake.kexe)
+| ->01.24% (12,072B) in 49 places, all below massif's threshold (1.00%)
+|   
+->01.10% (10,721B) 0x101F926C7: _xpc_malloc (in /usr/lib/system/libxpc.dylib)
+  ->01.10% (10,721B) 0x101F92583: _xpc_dictionary_insert (in /usr/lib/system/libxpc.dylib)
+    ->01.07% (10,399B) 0x101F92890: _xpc_dyld_image_callback (in /usr/lib/system/libxpc.dylib)
+    | ->01.07% (10,399B) 0x10015127E: dyld::registerAddCallback(void (*)(mach_header const*, long)) (in /usr/lib/dyld)
+    |   ->01.07% (10,399B) 0x101AFA8B5: _dyld_register_func_for_add_image (in /usr/lib/system/libdyld.dylib)
+    |     ->01.07% (10,399B) 0x101F9279E: _xpc_collect_images (in /usr/lib/system/libxpc.dylib)
+    |       ->01.07% (10,399B) 0x101F91D5C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+    |         ->01.07% (10,399B) 0x100F2D9C6: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+    |           ->01.07% (10,399B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |             ->01.07% (10,399B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |               ->01.07% (10,399B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                 ->01.07% (10,399B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                   ->01.07% (10,399B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                     ->01.07% (10,399B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+    |                       ->01.07% (10,399B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+    |                         ->01.07% (10,399B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+    |                           ->01.07% (10,399B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+    |                             ->01.07% (10,399B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+    |                               
+    ->00.03% (322B) in 1+ places, all below ms_print's threshold (01.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 32     29,080,104        1,169,336        1,113,605        55,731            0
+ 33     29,755,800        1,049,944        1,019,493        30,451            0
+ 34     30,431,552        1,077,312        1,044,397        32,915            0
+ 35     31,445,600        1,125,856        1,083,421        42,435            0
+ 36     32,121,304        1,126,600        1,080,755        45,845            0
+ 37     33,134,872        1,097,512        1,057,501        40,011            0
+ 38     33,812,952          981,192          965,749        15,443            0
+ 39     34,488,672        1,182,752        1,125,203        57,549            0
+ 40     35,502,240        1,175,536        1,119,341        56,195            0
+ 41     36,177,960        1,058,792        1,027,323        31,469            0
+ 42     36,853,688        1,033,288        1,008,189        25,099            0
+ 43     38,205,056        1,036,720        1,009,203        27,517            0
+ 44     39,556,456        1,118,616        1,073,861        44,755            0
+ 45     40,232,168        1,003,144          982,837        20,307            0
+ 46     40,908,560        1,198,624        1,139,469        59,155            0
+ 47     41,584,264        1,084,664        1,047,613        37,051            0
+ 48     42,597,840        1,073,680        1,038,117        35,563            0
+ 49     43,611,432        1,048,056        1,018,749        29,307            0
+ 50     44,239,032        1,092,248        1,056,595        35,653            0
+ 51     44,866,664        1,118,520        1,074,133        44,387            0
+ 52     45,494,288          989,824          971,493        18,331            0
+ 53     46,121,912        1,164,552        1,110,357        54,195            0
+ 54     46,749,528        1,039,432        1,011,539        27,893            0
+97.32% (1,011,539B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->57.74% (600,128B) 0x1002BE0FC: allocBuckets(void*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+| ->51.43% (534,576B) 0x1002BEAC0: _NXMapRehash(_NXMapTable*) (in /usr/lib/libobjc.A.dylib)
+| | ->51.43% (534,576B) 0x1002BE953: NXMapInsert (in /usr/lib/libobjc.A.dylib)
+| |   ->50.44% (524,304B) 0x1002BC445: objc_opt::objc_selopt_t::get(char const*) const (in /usr/lib/libobjc.A.dylib)
+| |   | ->50.44% (524,304B) 0x1002BCE60: _read_images (in /usr/lib/libobjc.A.dylib)
+| |   |   ->50.44% (524,304B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+| |   |     ->50.44% (524,304B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+| |   |       ->50.44% (524,304B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+| |   |         ->50.44% (524,304B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+| |   |           ->50.44% (524,304B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+| |   |             ->50.44% (524,304B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+| |   |               ->50.44% (524,304B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                 ->50.44% (524,304B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                   ->50.44% (524,304B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+| |   |                     ->50.44% (524,304B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                       ->50.44% (524,304B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                         ->50.44% (524,304B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                           ->50.44% (524,304B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                             ->50.44% (524,304B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                               ->50.44% (524,304B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+| |   |                                 ->50.44% (524,304B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+| |   |                                   ->50.44% (524,304B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+| |   |                                     ->50.44% (524,304B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+| |   |                                       ->50.44% (524,304B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+| |   |                                         
+| |   ->00.99% (10,272B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->06.31% (65,552B) 0x1002BDA17: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|   ->06.31% (65,552B) 0x1002BD8F9: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|     ->06.31% (65,552B) 0x1002BCBFB: _read_images (in /usr/lib/libobjc.A.dylib)
+|     | ->06.31% (65,552B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+|     |   ->06.31% (65,552B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+|     |     ->06.31% (65,552B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+|     |       ->06.31% (65,552B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+|     |         ->06.31% (65,552B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+|     |           ->06.31% (65,552B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+|     |             ->06.31% (65,552B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+|     |               ->06.31% (65,552B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+|     |                 ->06.31% (65,552B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+|     |                   ->06.31% (65,552B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                     ->06.31% (65,552B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                       ->06.31% (65,552B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                         ->06.31% (65,552B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                           ->06.31% (65,552B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                             ->06.31% (65,552B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+|     |                               ->06.31% (65,552B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+|     |                                 ->06.31% (65,552B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+|     |                                   ->06.31% (65,552B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+|     |                                     ->06.31% (65,552B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+|     |                                       
+|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|     
+->21.39% (222,336B) 0x1010F1FD7: newwin (in /usr/lib/libncurses.5.4.dylib)
+| ->06.93% (72,000B) 0x1010F516D: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->06.93% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->06.93% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->06.93% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->06.93% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->06.93% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->06.93% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->06.93% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->06.93% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->06.93% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->06.93% (72,000B) 0x1010F5199: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->06.93% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->06.93% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->06.93% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->06.93% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->06.93% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->06.93% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->06.93% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->06.93% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->06.93% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->06.93% (72,000B) 0x1010F52EE: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->06.93% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->06.93% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->06.93% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->06.93% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->06.93% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->06.93% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->06.93% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->06.93% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->06.93% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->00.61% (6,336B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->05.29% (55,010B) in 91 places, all below massif's threshold (1.00%)
+| 
+->04.98% (51,784B) 0x100048130: AllocInstance (in cmake-build-debug/snake.kexe)
+| ->02.32% (24,088B) in 47 places, all below massif's threshold (1.00%)
+| | 
+| ->01.66% (17,280B) 0x100024B6A: kfun:kotlin.Array.iterator()kotlin.collections.Iterator<
+| | ->01.66% (17,280B) in 2 places, all below massif's threshold (1.00%)
+| |   
+| ->01.00% (10,416B) 0x100057E6A: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+|   ->01.00% (10,416B) in 3 places, all below massif's threshold (1.00%)
+|     
+->03.15% (32,768B) 0x100044EF2: InitMemory (in cmake-build-debug/snake.kexe)
+| ->03.15% (32,768B) 0x100044A39: Kotlin_initRuntimeIfNeeded (in cmake-build-debug/snake.kexe)
+|   ->03.15% (32,768B) 0x10000835F: main (in cmake-build-debug/snake.kexe)
+|     
+->02.02% (21,000B) 0x10004F38C: AllocArrayInstance (in cmake-build-debug/snake.kexe)
+| ->01.33% (13,824B) 0x100058006: kfun:platform.osx.mvwprintw(kotlinx.cinterop.CValuesRef<cnames.structs._win_st>?;kotlin.Int;kotlin.Int;kotlin.String?;kotlin.Array<out_kotlin.Any?>_VarArg)ValueType (in cmake-build-debug/snake.kexe)
+| | ->01.33% (13,824B) in 3 places, all below massif's threshold (1.00%)
+| |   
+| ->00.69% (7,176B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->01.71% (17,792B) 0x1002BEBA3: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+| ->01.71% (17,792B) in 6 places, all below massif's threshold (1.00%)
+|   
+->01.03% (10,721B) 0x101F926C7: _xpc_malloc (in /usr/lib/system/libxpc.dylib)
+  ->01.03% (10,721B) 0x101F92583: _xpc_dictionary_insert (in /usr/lib/system/libxpc.dylib)
+    ->01.00% (10,399B) 0x101F92890: _xpc_dyld_image_callback (in /usr/lib/system/libxpc.dylib)
+    | ->01.00% (10,399B) 0x10015127E: dyld::registerAddCallback(void (*)(mach_header const*, long)) (in /usr/lib/dyld)
+    |   ->01.00% (10,399B) 0x101AFA8B5: _dyld_register_func_for_add_image (in /usr/lib/system/libdyld.dylib)
+    |     ->01.00% (10,399B) 0x101F9279E: _xpc_collect_images (in /usr/lib/system/libxpc.dylib)
+    |       ->01.00% (10,399B) 0x101F91D5C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+    |         ->01.00% (10,399B) 0x100F2D9C6: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+    |           ->01.00% (10,399B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |             ->01.00% (10,399B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |               ->01.00% (10,399B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                 ->01.00% (10,399B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                   ->01.00% (10,399B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                     ->01.00% (10,399B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+    |                       ->01.00% (10,399B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+    |                         ->01.00% (10,399B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+    |                           ->01.00% (10,399B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+    |                             ->01.00% (10,399B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+    |                               
+    ->00.03% (322B) in 1+ places, all below ms_print's threshold (01.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 55     47,377,112        1,147,752        1,102,037        45,715            0
+ 56     48,004,696        1,090,952        1,052,179        38,773            0
+ 57     48,632,304          966,256          953,893        12,363            0
+ 58     49,259,904        1,155,168        1,102,683        52,485            0
+ 59     49,887,504        1,037,360        1,009,653        27,707            0
+ 60     50,515,104        1,186,816        1,133,795        53,021            0
+ 61     51,142,704        1,088,416        1,050,709        37,707            0
+ 62     51,770,296          997,816          979,293        18,523            0
+ 63     52,397,888        1,136,624        1,088,459        48,165            0
+ 64     53,025,536        1,007,664          987,037        20,627            0
+97.95% (987,037B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->59.56% (600,128B) 0x1002BE0FC: allocBuckets(void*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+| ->53.05% (534,576B) 0x1002BEAC0: _NXMapRehash(_NXMapTable*) (in /usr/lib/libobjc.A.dylib)
+| | ->53.05% (534,576B) 0x1002BE953: NXMapInsert (in /usr/lib/libobjc.A.dylib)
+| |   ->52.03% (524,304B) 0x1002BC445: objc_opt::objc_selopt_t::get(char const*) const (in /usr/lib/libobjc.A.dylib)
+| |   | ->52.03% (524,304B) 0x1002BCE60: _read_images (in /usr/lib/libobjc.A.dylib)
+| |   |   ->52.03% (524,304B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+| |   |     ->52.03% (524,304B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+| |   |       ->52.03% (524,304B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+| |   |         ->52.03% (524,304B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+| |   |           ->52.03% (524,304B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+| |   |             ->52.03% (524,304B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+| |   |               ->52.03% (524,304B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                 ->52.03% (524,304B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                   ->52.03% (524,304B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+| |   |                     ->52.03% (524,304B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                       ->52.03% (524,304B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                         ->52.03% (524,304B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                           ->52.03% (524,304B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                             ->52.03% (524,304B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                               ->52.03% (524,304B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+| |   |                                 ->52.03% (524,304B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+| |   |                                   ->52.03% (524,304B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+| |   |                                     ->52.03% (524,304B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+| |   |                                       ->52.03% (524,304B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+| |   |                                         
+| |   ->01.02% (10,272B) in 2 places, all below massif's threshold (1.00%)
+| |     
+| ->06.51% (65,552B) 0x1002BDA17: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|   ->06.51% (65,552B) 0x1002BD8F9: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|     ->06.51% (65,552B) 0x1002BCBFB: _read_images (in /usr/lib/libobjc.A.dylib)
+|     | ->06.51% (65,552B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+|     |   ->06.51% (65,552B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+|     |     ->06.51% (65,552B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+|     |       ->06.51% (65,552B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+|     |         ->06.51% (65,552B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+|     |           ->06.51% (65,552B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+|     |             ->06.51% (65,552B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+|     |               ->06.51% (65,552B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+|     |                 ->06.51% (65,552B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+|     |                   ->06.51% (65,552B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                     ->06.51% (65,552B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                       ->06.51% (65,552B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                         ->06.51% (65,552B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                           ->06.51% (65,552B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                             ->06.51% (65,552B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+|     |                               ->06.51% (65,552B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+|     |                                 ->06.51% (65,552B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+|     |                                   ->06.51% (65,552B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+|     |                                     ->06.51% (65,552B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+|     |                                       
+|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|     
+->22.06% (222,336B) 0x1010F1FD7: newwin (in /usr/lib/libncurses.5.4.dylib)
+| ->07.15% (72,000B) 0x1010F516D: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.15% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.15% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.15% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.15% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.15% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.15% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.15% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.15% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.15% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->07.15% (72,000B) 0x1010F5199: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.15% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.15% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.15% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.15% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.15% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.15% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.15% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.15% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.15% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->07.15% (72,000B) 0x1010F52EE: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.15% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.15% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.15% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.15% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.15% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.15% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.15% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.15% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.15% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->00.63% (6,336B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->05.47% (55,140B) in 91 places, all below massif's threshold (1.00%)
+| 
+->03.31% (33,360B) 0x100048130: AllocInstance (in cmake-build-debug/snake.kexe)
+| ->02.27% (22,920B) in 48 places, all below massif's threshold (1.00%)
+| | 
+| ->01.04% (10,440B) 0x100024B6A: kfun:kotlin.Array.iterator()kotlin.collections.Iterator<
+|   ->01.04% (10,440B) in 2 places, all below massif's threshold (1.00%)
+|     
+->03.25% (32,768B) 0x100044EF2: InitMemory (in cmake-build-debug/snake.kexe)
+| ->03.25% (32,768B) 0x100044A39: Kotlin_initRuntimeIfNeeded (in cmake-build-debug/snake.kexe)
+|   ->03.25% (32,768B) 0x10000835F: main (in cmake-build-debug/snake.kexe)
+|     
+->01.77% (17,792B) 0x1002BEBA3: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+| ->01.77% (17,792B) in 6 places, all below massif's threshold (1.00%)
+|   
+->01.47% (14,792B) 0x10004F38C: AllocArrayInstance (in cmake-build-debug/snake.kexe)
+| ->01.47% (14,792B) in 12 places, all below massif's threshold (1.00%)
+|   
+->01.06% (10,721B) 0x101F926C7: _xpc_malloc (in /usr/lib/system/libxpc.dylib)
+  ->01.06% (10,721B) 0x101F92583: _xpc_dictionary_insert (in /usr/lib/system/libxpc.dylib)
+    ->01.03% (10,399B) 0x101F92890: _xpc_dyld_image_callback (in /usr/lib/system/libxpc.dylib)
+    | ->01.03% (10,399B) 0x10015127E: dyld::registerAddCallback(void (*)(mach_header const*, long)) (in /usr/lib/dyld)
+    |   ->01.03% (10,399B) 0x101AFA8B5: _dyld_register_func_for_add_image (in /usr/lib/system/libdyld.dylib)
+    |     ->01.03% (10,399B) 0x101F9279E: _xpc_collect_images (in /usr/lib/system/libxpc.dylib)
+    |       ->01.03% (10,399B) 0x101F91D5C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+    |         ->01.03% (10,399B) 0x100F2D9C6: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+    |           ->01.03% (10,399B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |             ->01.03% (10,399B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |               ->01.03% (10,399B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                 ->01.03% (10,399B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                   ->01.03% (10,399B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                     ->01.03% (10,399B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+    |                       ->01.03% (10,399B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+    |                         ->01.03% (10,399B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+    |                           ->01.03% (10,399B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+    |                             ->01.03% (10,399B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+    |                               
+    ->00.03% (322B) in 1+ places, all below ms_print's threshold (01.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 65     53,656,536        1,193,576        1,134,461        59,115            0
+ 66     54,284,144        1,075,824        1,040,333        35,491            0
+ 67     54,911,768        1,046,984        1,019,237        27,747            0
+ 68     55,539,368        1,126,200        1,080,525        45,675            0
+ 69     56,166,968          997,128          978,091        19,037            0
+ 70     56,794,584        1,188,488        1,128,579        59,909            0
+ 71     57,422,176        1,057,152        1,025,827        31,325            0
+ 72     58,049,768        1,104,824        1,066,125        38,699            0
+ 73     58,677,400        1,109,032        1,065,125        43,907            0
+ 74     59,305,000          988,104          970,043        18,061            0
+98.17% (970,043B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->60.74% (600,128B) 0x1002BE0FC: allocBuckets(void*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+| ->54.10% (534,576B) 0x1002BEAC0: _NXMapRehash(_NXMapTable*) (in /usr/lib/libobjc.A.dylib)
+| | ->54.10% (534,576B) 0x1002BE953: NXMapInsert (in /usr/lib/libobjc.A.dylib)
+| |   ->53.06% (524,304B) 0x1002BC445: objc_opt::objc_selopt_t::get(char const*) const (in /usr/lib/libobjc.A.dylib)
+| |   | ->53.06% (524,304B) 0x1002BCE60: _read_images (in /usr/lib/libobjc.A.dylib)
+| |   |   ->53.06% (524,304B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+| |   |     ->53.06% (524,304B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+| |   |       ->53.06% (524,304B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+| |   |         ->53.06% (524,304B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+| |   |           ->53.06% (524,304B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+| |   |             ->53.06% (524,304B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+| |   |               ->53.06% (524,304B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                 ->53.06% (524,304B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+| |   |                   ->53.06% (524,304B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+| |   |                     ->53.06% (524,304B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                       ->53.06% (524,304B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+| |   |                         ->53.06% (524,304B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                           ->53.06% (524,304B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                             ->53.06% (524,304B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+| |   |                               ->53.06% (524,304B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+| |   |                                 ->53.06% (524,304B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+| |   |                                   ->53.06% (524,304B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+| |   |                                     ->53.06% (524,304B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+| |   |                                       ->53.06% (524,304B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+| |   |                                         
+| |   ->01.04% (10,272B) in 2 places, all below massif's threshold (1.00%)
+| |     
+| ->06.63% (65,552B) 0x1002BDA17: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|   ->06.63% (65,552B) 0x1002BD8F9: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+|     ->06.63% (65,552B) 0x1002BCBFB: _read_images (in /usr/lib/libobjc.A.dylib)
+|     | ->06.63% (65,552B) 0x1002BBAC3: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+|     |   ->06.63% (65,552B) 0x1002CE7D9: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+|     |     ->06.63% (65,552B) 0x100151C63: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+|     |       ->06.63% (65,552B) 0x100151E38: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+|     |         ->06.63% (65,552B) 0x101AFB71C: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+|     |           ->06.63% (65,552B) 0x1002BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+|     |             ->06.63% (65,552B) 0x101A85B33: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+|     |               ->06.63% (65,552B) 0x101A85B1A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+|     |                 ->06.63% (65,552B) 0x100F2D9C1: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+|     |                   ->06.63% (65,552B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                     ->06.63% (65,552B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+|     |                       ->06.63% (65,552B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                         ->06.63% (65,552B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                           ->06.63% (65,552B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+|     |                             ->06.63% (65,552B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+|     |                               ->06.63% (65,552B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+|     |                                 ->06.63% (65,552B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+|     |                                   ->06.63% (65,552B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+|     |                                     ->06.63% (65,552B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+|     |                                       
+|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|     
+->22.50% (222,336B) 0x1010F1FD7: newwin (in /usr/lib/libncurses.5.4.dylib)
+| ->07.29% (72,000B) 0x1010F516D: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.29% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.29% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.29% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.29% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.29% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.29% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.29% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.29% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.29% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->07.29% (72,000B) 0x1010F5199: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.29% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.29% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.29% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.29% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.29% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.29% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.29% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.29% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.29% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->07.29% (72,000B) 0x1010F52EE: _nc_setupscreen (in /usr/lib/libncurses.5.4.dylib)
+| | ->07.29% (72,000B) 0x1010F1BB8: newterm (in /usr/lib/libncurses.5.4.dylib)
+| |   ->07.29% (72,000B) 0x1010EEBA6: initscr (in /usr/lib/libncurses.5.4.dylib)
+| |     ->07.29% (72,000B) 0x100058B1B: platform_osx_kniBridge258 (in cmake-build-debug/snake.kexe)
+| |       ->07.29% (72,000B) 0x100057D97: kfun:platform.osx.initscr()ValueType (in cmake-build-debug/snake.kexe)
+| |         ->07.29% (72,000B) 0x100008584: kfun:main(kotlin.Array<kotlin.String>) (main.kt:8)
+| |           ->07.29% (72,000B) 0x100008504: EntryPointSelector (in cmake-build-debug/snake.kexe)
+| |             ->07.29% (72,000B) 0x100008475: Konan_start (start.kt:29)
+| |               ->07.29% (72,000B) 0x1000083EF: Konan_run_start (in cmake-build-debug/snake.kexe)
+| |                 ->07.29% (72,000B) 0x100008369: main (in cmake-build-debug/snake.kexe)
+| |                   
+| ->00.64% (6,336B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->06.42% (63,474B) in 92 places, all below massif's threshold (1.00%)
+| 
+->03.32% (32,768B) 0x100044EF2: InitMemory (in cmake-build-debug/snake.kexe)
+| ->03.32% (32,768B) 0x100044A39: Kotlin_initRuntimeIfNeeded (in cmake-build-debug/snake.kexe)
+|   ->03.32% (32,768B) 0x10000835F: main (in cmake-build-debug/snake.kexe)
+|     
+->02.31% (22,824B) 0x100048130: AllocInstance (in cmake-build-debug/snake.kexe)
+| ->02.31% (22,824B) in 50 places, all below massif's threshold (1.00%)
+|   
+->01.80% (17,792B) 0x1002BEBA3: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+| ->01.80% (17,792B) in 6 places, all below massif's threshold (1.00%)
+|   
+->01.09% (10,721B) 0x101F926C7: _xpc_malloc (in /usr/lib/system/libxpc.dylib)
+  ->01.09% (10,721B) 0x101F92583: _xpc_dictionary_insert (in /usr/lib/system/libxpc.dylib)
+    ->01.05% (10,399B) 0x101F92890: _xpc_dyld_image_callback (in /usr/lib/system/libxpc.dylib)
+    | ->01.05% (10,399B) 0x10015127E: dyld::registerAddCallback(void (*)(mach_header const*, long)) (in /usr/lib/dyld)
+    |   ->01.05% (10,399B) 0x101AFA8B5: _dyld_register_func_for_add_image (in /usr/lib/system/libdyld.dylib)
+    |     ->01.05% (10,399B) 0x101F9279E: _xpc_collect_images (in /usr/lib/system/libxpc.dylib)
+    |       ->01.05% (10,399B) 0x101F91D5C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+    |         ->01.05% (10,399B) 0x100F2D9C6: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+    |           ->01.05% (10,399B) 0x100163AC4: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |             ->01.05% (10,399B) 0x100163CF4: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+    |               ->01.05% (10,399B) 0x10015F216: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                 ->01.05% (10,399B) 0x10015F1A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                   ->01.05% (10,399B) 0x10015E34C: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+    |                     ->01.05% (10,399B) 0x10015E3E0: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+    |                       ->01.05% (10,399B) 0x10014F51F: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+    |                         ->01.05% (10,399B) 0x100154237: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) (in /usr/lib/dyld)
+    |                           ->01.05% (10,399B) 0x10014E3D2: dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) (in /usr/lib/dyld)
+    |                             ->01.05% (10,399B) 0x10014E1D0: _dyld_start (in /usr/lib/dyld)
+    |                               
+    ->00.03% (322B) in 1+ places, all below ms_print's threshold (01.00%)
+    
