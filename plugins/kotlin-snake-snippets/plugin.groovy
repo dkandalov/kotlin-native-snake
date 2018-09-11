@@ -14,11 +14,10 @@ registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event 
     def project = event.project
     def popupMenuDescription = [
             "gradle"     : { addNCursesToGradle(project) },
-            "String.kt"  : { openInEditor("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", project) },
-            "KString"    : { openInEditor("$knBasePath/runtime/src/main/cpp/KString.cpp", project) },
+            "String.kt"  : { openFile("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", 17 ,project) },
+            "KString.cpp"    : { openFile("$knBasePath/runtime/src/main/cpp/KString.cpp", 1168, project) },
             "ncurses.kt" : {
-                def virtualFile = openInEditor("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", project)
-                if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(679, 0))
+                openFile("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", 679, project)
             },
             "log"        : { pasteLog(project) },
             "valgrid"    : { openInEditor("$userHome/IdeaProjects/kotlin-native-snake/massif.out.printed", project) },
@@ -30,6 +29,11 @@ registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event 
 
 registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
     liveplugin.implementation.Actions.executeRunConfiguration("Build All", event.project)
+}
+
+static openFile(filePath, line, project) {
+    def virtualFile = openInEditor(filePath, project)
+    if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(line, 0))
 }
 
 static addNCursesToGradle(Project project) {
@@ -52,6 +56,9 @@ buildscript {
 apply plugin: "konan"
 
 konanArtifacts {
+    interop("ncurses") {
+        defFile "ncurses.def"
+    }
     program("snake") {
         srcDir "src"
         libraries { artifact "ncurses" }
@@ -60,9 +67,6 @@ konanArtifacts {
         srcDir "src"
         srcDir "test"
         libraries { artifact "ncurses" }
-    }
-    interop("ncurses") {
-        defFile "ncurses.def"
     }
 }
 """.trim()
