@@ -1,9 +1,6 @@
 import Direction.*
-import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.*
 import platform.osx.*
-import platform.posix.getpid
-import platform.posix.pid_t
 import kotlin.random.Random
 
 fun main(args: Array<String>) = memScoped {
@@ -67,7 +64,9 @@ data class Game(
     val score = snake.cells.size
     val isOver =
         snake.tail.contains(snake.head) ||
-        snake.cells.any { it.x < 0 || it.x >= width || it.y < 0 || it.y >= height }
+        snake.cells.any {
+            it.x < 0 || it.x >= width || it.y < 0 || it.y >= height
+        }
 
     fun update(direction: Direction?): Game {
         if (isOver) return this
@@ -94,7 +93,7 @@ data class Snake(
         val newTail = if (eatenApples == 0) cells.dropLast(1) else cells
         return copy(
             cells = listOf(newHead) + newTail,
-            eatenApples = maxOf(eatenApples - 1, 0)
+            eatenApples = maxOf(0, eatenApples - 1)
         )
     }
 
@@ -106,7 +105,7 @@ data class Snake(
     fun eat(apples: Apples): Pair<Snake, Apples> {
         if (!apples.cells.contains(head)) return Pair(this, apples)
         return Pair(
-            copy(eatenApples = eatenApples + 1),
+            this.copy(eatenApples = eatenApples + 1),
             apples.copy(cells = apples.cells - head)
         )
     }
