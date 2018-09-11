@@ -1,7 +1,7 @@
 import Direction.*
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
-
 
 class SnakeTests {
     private val snake = Snake(
@@ -37,13 +37,13 @@ class SnakeTests {
     }
 
     @Test fun `snake eats an apple`() {
-        val apples = Apples(20, 10, cells = listOf(Cell(2, 0)))
+        val apples = Apples(20, 10, cells = setOf(Cell(2, 0)))
 
         val (newSnake, newApples) = snake.eat(apples)
 
         assertEquals(
             actual = newApples.cells,
-            expected = emptyList()
+            expected = emptySet()
         )
         assertEquals(
             actual = newSnake.eatenApples,
@@ -59,11 +59,11 @@ class SnakeTests {
 class ApplesTests {
     @Test fun `apples grow at random locations`() {
         Random.seed = 42
-        val apples = Apples(fieldWidth = 20, fieldHeight = 10)
+        val apples = Apples(width = 20, height = 10)
 
         assertEquals(
             actual = apples.grow().grow().grow().cells,
-            expected = listOf(Cell(x = 8, y = 4), Cell(x = 5, y = 5))
+            expected = setOf(Cell(x = 8, y = 4), Cell(x = 5, y = 5))
         )
     }
 }
