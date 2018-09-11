@@ -1,6 +1,6 @@
 import Direction.*
 import kotlinx.cinterop.*
-import platform.osx.*
+import ncurses.*
 import kotlin.random.Random
 
 fun main(args: Array<String>) = memScoped {
@@ -105,7 +105,7 @@ data class Snake(
     fun eat(apples: Apples): Pair<Snake, Apples> {
         if (!apples.cells.contains(head)) return Pair(this, apples)
         return Pair(
-            this.copy(eatenApples = eatenApples + 1),
+            copy(eatenApples = eatenApples + 1),
             apples.copy(cells = apples.cells - head)
         )
     }
