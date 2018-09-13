@@ -13,21 +13,15 @@ buildscript {
 apply plugin: "konan"
 
 konanArtifacts {
-    interop ('sdl') {
-        defFile 'sdl.def'
-        packageName 'sdl'
+    interop ("sdl") {
+        defFile "sdl.def"
+        packageName "sdl"
 
-        target 'macbook', {
-            includeDirs '/Library/Frameworks/SDL2.framework/Headers'
+        target "macbook", {
+            includeDirs "/Library/Frameworks/SDL2.framework/Headers"
         }
-        target 'linux', {
-            includeDirs '/usr/include/SDL2'
-        }
-        target 'raspberrypi', {
-            includeDirs "$konanUserDir/dependencies/target-sysroot-1-raspberrypi/usr/include/SDL2"
-        }
-        target 'mingw', {
-            includeDirs "${System.getenv("MINGW64_DIR")?:"c:/msys64/mingw64"}/include/SDL2"
+        target "linux", {
+            includeDirs "/usr/include/SDL2"
         }
     }
 
@@ -46,7 +40,7 @@ compileKonan {
     doLast {
         konanArtifacts.snake.forEach() { task ->
             copy {
-                from 'resources'
+                from "resources"
                 into task.artifact.parentFile
             }
         }
