@@ -6,7 +6,7 @@ Folders structure:
  [Rust](https://github.com/dkandalov/rust-snake), [Scala Native](https://github.com/dkandalov/scala-native-snake),
  [Graal VM](https://github.com/dkandalov/graalvm-snake) and [Go](https://github.com/dkandalov/go-snake).
  - `snake-sdl` - snake implementation using [SDL](https://www.libsdl.org)
- - `slides` - Keynote slides and [Rubik Font](https://fonts.google.com/specimen/Rubik?selection.family=Rubik) which is not available on OSX by default
+ - `slides` - Keynote slides (and [Rubik Font](https://fonts.google.com/specimen/Rubik?selection.family=Rubik) which is not available on OSX out of the box)
  - `plugins` - [live plugins](https://github.com/dkandalov/live-plugin) used for the presentation
  
 Links mentioned in the slides:

@@ -22,12 +22,12 @@ fun main(args: Array<String>) = memScoped {
     val window = newwin(game.height + 2, game.width + 2, 0, 0)!!
     defer { delwin(window) }
 
-    var c = 0
-    while (c.toChar() != 'q') {
+    var input = 0
+    while (input.toChar() != 'q') {
         window.draw(game)
 
-        c = wgetch(window)
-        val direction = when (c.toChar()) {
+        input = wgetch(window)
+        val direction = when (input.toChar()) {
             'i'  -> up
             'j'  -> left
             'k'  -> down
@@ -97,18 +97,16 @@ data class Snake(
         )
     }
 
-    fun turn(newDirection: Direction?): Snake {
-        if (newDirection == null || newDirection.isOpposite(direction)) return this
-        return copy(direction = newDirection)
-    }
+    fun turn(newDirection: Direction?): Snake =
+        if (newDirection == null || newDirection.isOpposite(direction)) this
+        else copy(direction = newDirection)
 
-    fun eat(apples: Apples): Pair<Snake, Apples> {
-        if (!apples.cells.contains(head)) return Pair(this, apples)
-        return Pair(
+    fun eat(apples: Apples): Pair<Snake, Apples> =
+        if (!apples.cells.contains(head)) Pair(this, apples)
+        else Pair(
             copy(eatenApples = eatenApples + 1),
             apples.copy(cells = apples.cells - head)
         )
-    }
 }
 
 data class Apples(
@@ -118,12 +116,11 @@ data class Apples(
     val growthSpeed: Int = 3,
     val random: Random = Random
 ) {
-    fun grow(): Apples {
-        if (random.nextInt(growthSpeed) != 0) return this
-        return copy(
+    fun grow(): Apples =
+        if (random.nextInt(growthSpeed) != 0) this
+        else copy(
             cells = cells + Cell(random.nextInt(width), random.nextInt(height))
         )
-    }
 }
 
 data class Cell(val x: Int, val y: Int) {
@@ -135,5 +132,5 @@ enum class Direction(val dx: Int, val dy: Int) {
     up(0, -1), down(0, 1), left(-1, 0), right(1, 0);
 
     fun isOpposite(that: Direction) =
-        dx + that.dx == 0 || dy + that.dy == 0
+        dx + that.dx == 0 && dy + that.dy == 0
 }
