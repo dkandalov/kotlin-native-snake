@@ -48,7 +48,7 @@ fun CPointer<WINDOW>.draw(game: Game) {
     game.snake.head.let { mvwprintw(this, it.y + 1, it.x + 1, "Q") }
 
     if (game.isOver) {
-        mvwprintw(this, 0, 4, "Game is Over")
+        mvwprintw(this, 0, 6, "Game Over")
         mvwprintw(this, 1, 3, "Your score is ${game.score}")
     }
 
