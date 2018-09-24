@@ -117,7 +117,7 @@ data class Apples(
     val random: Random = Random
 ) {
     fun grow(): Apples =
-        if (random.nextInt(growthSpeed) != 0) this
+        if (random.nextInt(10) >= growthSpeed) this
         else copy(
             cells = cells + Cell(random.nextInt(width), random.nextInt(height))
         )
