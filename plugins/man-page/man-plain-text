@@ -1,2 +1,0 @@
-#!/bin/sh
-man -S 2:3 $1 | col -bx
