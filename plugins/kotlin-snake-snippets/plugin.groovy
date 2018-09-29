@@ -13,20 +13,22 @@ def knBasePath = userHome + "/IdeaProjects/kotlin-native/"
 registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event ->
     def project = event.project
     def popupMenuDescription = [
+            "String.kt"  : { openFile("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", 17, project) },
+            "KString.cpp": { openFile("$knBasePath/runtime/src/main/cpp/KString.cpp", 1168, project) },
+            "ncurses.kt" : { openFile("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", 679, project) },
             "gradle"     : { addNCursesToGradle(project) },
-            "String.kt"  : { openFile("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", 17 ,project) },
-            "KString.cpp"    : { openFile("$knBasePath/runtime/src/main/cpp/KString.cpp", 1168, project) },
-            "ncurses.kt" : {
-                openFile("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", 679, project)
-            },
-            "log"        : { pasteLog(project) },
             "valgrid"    : { openInEditor("$userHome/IdeaProjects/kotlin-native-snake/massif.out.printed", project) },
+            "sdl"        : { openInEditor("$userHome/IdeaProjects/kotlin-native-snake/snake-sdl/src/main.kt", project) }
+//            "log"        : { pasteLog(project) },
 //            "shouldEqual": { pasteShouldEqual(project) },
 //            "--"         : Separator.instance,
     ]
     showPopupMenu(popupMenuDescription, "Snake")
 }
 
+// Do this because CLion builds each "program" separately,
+// i.e. compiling and running tests won't compile the main program.
+// And because compilation is quite slow it might be better to build everything in one go.
 registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
     liveplugin.implementation.Actions.executeRunConfiguration("Build All", event.project)
 }

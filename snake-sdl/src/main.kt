@@ -9,6 +9,49 @@ import sdl.*
 import kotlin.math.max
 import kotlin.random.Random
 
+fun main(args: Array<String>) = memScoped {
+    val initialGame = Game(
+        width = 20,
+        height = 10,
+        snake = Snake(
+            cells = listOf(Cell(4, 4), Cell(3, 4), Cell(2, 4), Cell(1, 4), Cell(0, 4)),
+            direction = right
+        )
+    )
+    var game = initialGame
+
+    val sdlUI = SdlUI(game.width, game.height)
+    defer { sdlUI.destroy() }
+
+    var ticks = 0
+    val speed = 10
+    while (true) {
+
+        sdlUI.draw(game)
+        sdlUI.delay()
+
+        ticks++
+        if (ticks >= speed) {
+            game = game.update()
+            ticks -= speed
+        }
+
+        sdlUI.readCommands().forEach { command ->
+            var direction: Direction? = null
+            when (command) {
+                SdlUI.UserCommand.up      -> direction = up
+                SdlUI.UserCommand.down    -> direction = down
+                SdlUI.UserCommand.left    -> direction = left
+                SdlUI.UserCommand.right   -> direction = right
+                SdlUI.UserCommand.restart -> game = initialGame
+                SdlUI.UserCommand.quit    -> return
+            }
+            game = game.update(direction)
+            sdlUI.draw(game)
+        }
+    }
+}
+
 class SdlUI(width: Int, height: Int) {
     private val arena = Arena()
     private val window: CPointer<SDL_Window>
@@ -106,6 +149,7 @@ class SdlUI(width: Int, height: Int) {
     }
 
     fun delay() {
+        // TODO extract ms argument
         SDL_Delay(1000 / 60)
     }
 
@@ -302,50 +346,6 @@ class SdlUI(width: Int, height: Int) {
         }
     }
 }
-
-fun main(args: Array<String>) = memScoped {
-    val initialGame = Game(
-        width = 20,
-        height = 10,
-        snake = Snake(
-            cells = listOf(Cell(4, 4), Cell(3, 4), Cell(2, 4), Cell(1, 4), Cell(0, 4)),
-            direction = right
-        )
-    )
-    var game = initialGame
-
-    val sdlUI = SdlUI(game.width, game.height)
-    defer { sdlUI.destroy() }
-
-    var ticks = 0
-    val speed = 10
-    while (true) {
-
-        sdlUI.draw(game)
-        sdlUI.delay()
-
-        ticks++
-        if (ticks >= speed) {
-            game = game.update()
-            ticks -= speed
-        }
-
-        sdlUI.readCommands().forEach { command ->
-            var direction: Direction? = null
-            when (command) {
-                SdlUI.UserCommand.up      -> direction = up
-                SdlUI.UserCommand.down    -> direction = down
-                SdlUI.UserCommand.left    -> direction = left
-                SdlUI.UserCommand.right   -> direction = right
-                SdlUI.UserCommand.restart -> game = initialGame
-                SdlUI.UserCommand.quit    -> return
-            }
-            game = game.update(direction)
-            sdlUI.draw(game)
-        }
-    }
-}
-
 
 data class Game(
     val width: Int,
