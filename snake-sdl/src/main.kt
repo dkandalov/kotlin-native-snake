@@ -28,8 +28,8 @@ fun main(args: Array<String>) = memScoped {
     while (true) {
 
         sdlUI.draw(game)
-        sdlUI.delay()
 
+        sdlUI.delay(1000 / 60)
         ticks++
         if (ticks >= speed) {
             game = game.update()
@@ -141,16 +141,15 @@ class SdlUI(width: Int, height: Int) {
         }
 
         // Print all letter to check spacing between letters
-        // because the current font is not monospace and some letters look too wide (e.g. i,v,u)
+        // because the font is not monospace and some letters look too wide (e.g. i,v,u)
 //        renderString(Cell(0, 0), "abcdefghijklmnopqrstuvwxyz")
 //        renderString(Cell(0, 1), "abcdefghijklmnopqrstuvwxyz".reversed())
 
         SDL_RenderPresent(renderer)
     }
 
-    fun delay() {
-        // TODO extract ms argument
-        SDL_Delay(1000 / 60)
+    fun delay(timeMs: Int) {
+        SDL_Delay(timeMs)
     }
 
     fun readCommands(): List<UserCommand> = memScoped {
