@@ -17,3 +17,7 @@ Links mentioned in the slides:
  - [Intro to ncurses](https://invisible-island.net/ncurses/ncurses-intro.html), [ncurses examples](https://github.com/tony/NCURSES-Programming-HOWTO-examples)
  - [High Performance Managed Languages](https://www.infoq.com/presentations/performance-managed-languages) talk on InfoQ
  - [LLVM](https://llvm.org/)
+
+Versions of the tools I managed to get working:
+ - CLion 2018.2.1
+ - Kotlin/Native 0.8.2
