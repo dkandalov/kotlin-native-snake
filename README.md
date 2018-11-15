@@ -1,4 +1,4 @@
-Slides and source for the "Live Coding Kotlin/Native Snake" talk.
+Slides and source for the [Live Coding Kotlin/Native Snake talk](https://www.youtube.com/watch?time_continue=3&v=U-gdJQeOVAk).
 
 Folders structure:
  - `snake` - snake source code written during the talk. 
