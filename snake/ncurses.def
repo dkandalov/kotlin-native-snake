@@ -1,6 +1,6 @@
 
 
-headers = /usr/include/ncurses.h
+headers = ncurses.h
 
 compilerOpts.linux = -I/usr/include/
 

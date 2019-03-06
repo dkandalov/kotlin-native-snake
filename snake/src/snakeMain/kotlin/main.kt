@@ -1,6 +1,9 @@
-import Direction.*
+package snake
+
+import snake.Direction.*
 import kotlinx.cinterop.*
 import ncurses.*
+import platform.osx.*
 import kotlin.random.Random
 
 fun main(args: Array<String>) = memScoped {
