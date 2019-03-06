@@ -1,6 +1,7 @@
 
 
-headers = /usr/include/ncurses.h
+headers.osx = ncurses.h
+headers.linux = /usr/include/ncurses.h
 
 compilerOpts.linux = -I/usr/include/
 
