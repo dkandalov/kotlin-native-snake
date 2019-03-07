@@ -1,6 +1,7 @@
 import Direction.*
-import kotlinx.cinterop.*
-import ncurses.*
+import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
+import platform.osx.*
 import kotlin.random.Random
 
 fun main(args: Array<String>) = memScoped {
@@ -65,7 +66,7 @@ data class Game(
     val isOver =
         snake.tail.contains(snake.head) ||
         snake.cells.any {
-            it.x < 0 || it.x >= width || it.y < 0 || it.y >= height
+            it.x !in 0.until(width) || it.y !in 0.until(height)
         }
 
     fun update(direction: Direction?): Game {
@@ -97,14 +98,14 @@ data class Snake(
         )
     }
 
-    fun turn(newDirection: Direction?): Snake =
-        if (newDirection == null || newDirection.isOpposite(direction)) this
+    fun turn(newDirection: Direction?) =
+        if (newDirection == null || newDirection.isOppositeTo(direction)) this
         else copy(direction = newDirection)
 
-    fun eat(apples: Apples): Pair<Snake, Apples> =
+    fun eat(apples: Apples) =
         if (!apples.cells.contains(head)) Pair(this, apples)
         else Pair(
-            copy(eatenApples = eatenApples + 1),
+            this.copy(eatenApples = eatenApples + 1),
             apples.copy(cells = apples.cells - head)
         )
 }
@@ -116,7 +117,7 @@ data class Apples(
     val growthSpeed: Int = 3,
     val random: Random = Random
 ) {
-    fun grow(): Apples =
+    fun grow() =
         if (random.nextInt(10) >= growthSpeed) this
         else copy(
             cells = cells + Cell(random.nextInt(width), random.nextInt(height))
@@ -131,6 +132,6 @@ data class Cell(val x: Int, val y: Int) {
 enum class Direction(val dx: Int, val dy: Int) {
     up(0, -1), down(0, 1), left(-1, 0), right(1, 0);
 
-    fun isOpposite(that: Direction) =
+    fun isOppositeTo(that: Direction) =
         dx + that.dx == 0 && dy + that.dy == 0
 }
