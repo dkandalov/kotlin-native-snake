@@ -7,7 +7,8 @@ Folders structure:
  [Graal VM](https://github.com/dkandalov/graalvm-snake) and [Go](https://github.com/dkandalov/go-snake).
  - `snake-sdl` - snake implementation using [SDL](https://www.libsdl.org)
  - `slides` - Keynote slides (and [Rubik Font](https://fonts.google.com/specimen/Rubik?selection.family=Rubik) which is not available on OSX out of the box)
- - `plugins` - [live plugins](https://github.com/dkandalov/live-plugin) used for the presentation
+ - `plugins/kotlin-snake-snippets` - [live plugin](https://github.com/dkandalov/live-plugin) to show code snippets, e.g. source code of `KString`
+ (see also [Man page viewer plugin](https://plugins.jetbrains.com/plugin/11167-man-page-viewer)).
  
 Links mentioned in the slides:
  - [Kotlin/Native github page](https://github.com/JetBrains/kotlin-native)
