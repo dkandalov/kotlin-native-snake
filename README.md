@@ -19,5 +19,9 @@ Links mentioned in the slides:
  - [LLVM](https://llvm.org/)
 
 Versions of the tools I managed to get working:
- - CLion 2018.2.1
- - Kotlin/Native 0.8.2
+ - CLion 2018.2.1 (see [Previous CLion Releases](https://www.jetbrains.com/clion/download/previous.html))
+ - Kotlin/Native [0.8.2](https://github.com/JetBrains/kotlin-native/releases/tag/v0.8.2) 
+   with [kotlin-native-gradle-plugin](https://kotlinlang.org/docs/reference/native/gradle_plugin.html)
+
+Note that this setup is out-of-date and we're supposed to use [multiplatform builds](https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html) now.
+If you manage, to configure MPP gradle plugin with the same setup and CLion integration as this project, please let me know :)
