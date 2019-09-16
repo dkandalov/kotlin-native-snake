@@ -1,9 +1,8 @@
 
 
-headers.osx = ncurses.h
-headers.linux = /usr/include/ncurses.h
-
-compilerOpts.linux = -I/usr/include/
-
+headers.osx = /usr/local/Cellar/ncurses/6.1/include/ncurses.h
 linkerOpts.osx = -lncurses
+
+headers.linux = /usr/include/ncurses.h
 linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -L/lib/x86_64-linux-gnu/ -lncurses
+compilerOpts.linux = -I/usr/include/
