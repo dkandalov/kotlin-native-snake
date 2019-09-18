@@ -1,10 +1,8 @@
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.Separator
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.vfs.VirtualFile
-import liveplugin.PluginUtil
 
+import static com.intellij.openapi.progress.PerformInBackgroundOption.ALWAYS_BACKGROUND
 import static liveplugin.PluginUtil.*
 
 def userHome = System.getProperty("user.home")
@@ -15,75 +13,30 @@ registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event 
     def popupMenuDescription = [
             "String.kt"  : { openFile("$knBasePath/runtime/src/main/kotlin/kotlin/String.kt", 17, project) },
             "KString.cpp": { openFile("$knBasePath/runtime/src/main/cpp/KString.cpp", 1168, project) },
-            "ncurses.kt" : { openFile("$userHome/IdeaProjects/katas/kotlin-native/hello-snake/build/konan/libs/macos_x64/ncurses.klib-build/kotlin/ncurses/ncurses.kt", 679, project) },
-            "gradle"     : { addNCursesToGradle(project) },
+            "ncurses.h" : { openFile("/usr/local/Cellar/ncurses/6.1/include/ncurses.h", 679, project) },
             "valgrid"    : { openInEditor("$userHome/IdeaProjects/kotlin-native-snake/massif.out.printed", project) },
             "sdl"        : { openInEditor("$userHome/IdeaProjects/kotlin-native-snake/snake-sdl/src/main.kt", project) }
 //            "log"        : { pasteLog(project) },
-//            "shouldEqual": { pasteShouldEqual(project) },
-//            "--"         : Separator.instance,
     ]
     showPopupMenu(popupMenuDescription, "Snake")
 }
 
-// Do this because CLion builds each "program" separately,
-// i.e. compiling and running tests won't compile the main program.
-// And because compilation is quite slow it might be better to build everything in one go.
+// Do this because gradle tasks don't display any notifications when running in presentation mode.
+// See https://youtrack.jetbrains.com/issue/IDEA-222825
 registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
-    liveplugin.implementation.Actions.executeRunConfiguration("Build All", event.project)
+    def latch = new java.util.concurrent.CountDownLatch(1)
+    registerConsoleListener("CustomBuildAll-ConsoleListener") { consoleText ->
+        if (consoleText.contains("Task execution finished 'linkDebugExecutableSnake'")) {
+            latch.countDown()
+        }
+    }
+    doInBackground("Building snake", true, ALWAYS_BACKGROUND, { latch.await() }, { latch.countDown() })
+    liveplugin.implementation.Actions.executeRunConfiguration("snake [linkDebugExecutableSnake]", event.project)
 }
 
 static openFile(filePath, line, project) {
     def virtualFile = openInEditor(filePath, project)
     if (virtualFile != null) currentEditorIn(project).caretModel.moveToLogicalPosition(new LogicalPosition(line, 0))
-}
-
-static addNCursesToGradle(Project project) {
-    def document = liveplugin.PluginUtil.document(findFileByName("build.gradle", project))
-
-    runDocumentWriteAction(project, document) {
-        document.text = """
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-        }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.8.2"
-    }
-}
-
-apply plugin: "konan"
-
-konanArtifacts {
-    interop("ncurses") {
-        defFile "ncurses.def"
-    }
-    program("snake") {
-        srcDir "src"
-        libraries { artifact "ncurses" }
-    }
-    program("snakeTest") {
-        srcDir "src"
-        srcDir "test"
-        libraries { artifact "ncurses" }
-    }
-}
-""".trim()
-    }
-}
-
-static pasteShouldEqual(Project project) {
-    def document = currentDocumentIn(project)
-    def editor = currentEditorIn(project)
-
-    runDocumentWriteAction(project, document) {
-        document.insertString(editor.caretModel.offset, """
-infix fun <T> T.shouldEqual(that: T) = assertEquals(actual = this, expected = that)
-""")
-    }
 }
 
 static pasteLog(Project project) {
