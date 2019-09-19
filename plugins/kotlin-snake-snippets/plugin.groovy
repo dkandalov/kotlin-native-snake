@@ -1,7 +1,14 @@
+import com.intellij.execution.ExecutionListener
+import com.intellij.execution.runners.ExecutionEnvironment
+import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.DataContext
+import com.intellij.openapi.actionSystem.ex.AnActionListener
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.project.Project
+import org.jetbrains.annotations.NotNull
 
+import static com.intellij.execution.ExecutionManager.EXECUTION_TOPIC
 import static com.intellij.openapi.progress.PerformInBackgroundOption.ALWAYS_BACKGROUND
 import static liveplugin.PluginUtil.*
 
@@ -23,16 +30,34 @@ registerAction("kotlinSnakeProjectPopup", "ctrl shift K") { AnActionEvent event 
 
 // Do this because gradle tasks don't display any notifications when running in presentation mode.
 // See https://youtrack.jetbrains.com/issue/IDEA-222825
-registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
-    def latch = new java.util.concurrent.CountDownLatch(1)
-    registerConsoleListener("CustomBuildAll-ConsoleListener") { consoleText ->
-        if (consoleText.contains("Task execution finished 'linkDebugExecutableSnake'")) {
-            latch.countDown()
+registerProjectListener(pluginDisposable) { Project project ->
+    project.messageBus.connect(pluginDisposable).subscribe(EXECUTION_TOPIC, new ExecutionListener() {
+        @java.lang.Override
+        void processStarting(@NotNull String executorId, @NotNull ExecutionEnvironment env) {
+            if (env.runProfile.name.contains("snake [")) {
+                def latch = new java.util.concurrent.CountDownLatch(1)
+                registerConsoleListener("CustomBuildAll-ConsoleListener") { consoleText ->
+                    if (consoleText.contains("Task execution finished")) {
+                        latch.countDown()
+                    }
+                }
+                doInBackground(env.runProfile.name, true, ALWAYS_BACKGROUND, { latch.await() }, { latch.countDown() })
+            }
+            //show(env.runProfile.name + "!!!")
         }
-    }
-    doInBackground("Building snake", true, ALWAYS_BACKGROUND, { latch.await() }, { latch.countDown() })
-    liveplugin.implementation.Actions.executeRunConfiguration("snake [linkDebugExecutableSnake]", event.project)
+    })
 }
+
+//registerAction("CustomBuildAll", "ctrl alt F9") { AnActionEvent event ->
+//    def latch = new java.util.concurrent.CountDownLatch(1)
+//    registerConsoleListener("CustomBuildAll-ConsoleListener") { consoleText ->
+//        if (consoleText.contains("Task execution finished 'linkDebugExecutableSnake'")) {
+//            latch.countDown()
+//        }
+//    }
+//    doInBackground("Building snake", true, ALWAYS_BACKGROUND, { latch.await() }, { latch.countDown() })
+//    liveplugin.implementation.Actions.executeRunConfiguration("snake [linkDebugExecutableSnake]", event.project)
+//}
 
 static openFile(filePath, line, project) {
     def virtualFile = openInEditor(filePath, project)
