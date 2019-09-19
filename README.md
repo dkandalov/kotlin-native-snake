@@ -18,6 +18,7 @@ Links mentioned in the talk:
  - [Intro to ncurses](https://invisible-island.net/ncurses/ncurses-intro.html), [ncurses examples](https://github.com/tony/NCURSES-Programming-HOWTO-examples)
  - [High Performance Managed Languages](https://www.infoq.com/presentations/performance-managed-languages) talk on InfoQ
  - [LLVM](https://llvm.org/)
+ - [Stop the Constant Shouting](https://accu.org/index.php/journals/1923)
 
 Version of the tools used in the talk:
  - IntelliJ IDEA 2019.2.2 (see [Previous IntelliJ Versions](https://www.jetbrains.com/idea/download/other.html))

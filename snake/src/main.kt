@@ -22,11 +22,10 @@ fun main(): Unit = memScoped {
         )
     )
 
-    val window: CPointer<WINDOW> = newwin(game.height + 2, game.width + 2, 0, 0)!!
+    val window = newwin(game.height + 2, game.width + 2, 0, 0)!!
     defer { delwin(window) }
 
     var input = 0
-
     while (input.toChar() != 'q') {
         window.draw(game)
 
@@ -50,28 +49,12 @@ private fun CPointer<WINDOW>.draw(game: Game) {
     game.apples.cells.forEach { mvwprintw(this, it.y + 1, it.x + 1, ".") }
     game.snake.tail.forEach { mvwprintw(this, it.y + 1, it.x + 1, "o") }
     game.snake.head.let { mvwprintw(this, it.y + 1, it.x + 1, "Q") }
-
     if (game.isOver) {
         mvwprintw(this, 0, 6, "Game Over")
         mvwprintw(this, 1, 3, "Your score is ${game.score}")
     }
 
     wrefresh(this)
-}
-
-data class Apples(
-    val width: Int,
-    val height: Int,
-    val cells: Set<Cell> = emptySet(),
-    val growthSpeed: Int = 3,
-    val random: Random = Random
-) {
-    fun grow(): Apples {
-        if (random.nextInt(10) >= growthSpeed) return this
-        return copy(
-            cells = cells + Cell(random.nextInt(width), random.nextInt(height))
-        )
-    }
 }
 
 data class Game(
@@ -96,6 +79,19 @@ data class Game(
             .eat(apples.grow())
 
         return copy(snake = newSnake, apples = newApples)
+    }
+}
+
+data class Apples(
+    val width: Int,
+    val height: Int,
+    val cells: Set<Cell> = emptySet(),
+    val growthSpeed: Int = 3,
+    val random: Random = Random
+) {
+    fun grow(): Apples {
+        if (random.nextInt(10) >= growthSpeed) return this
+        return copy(cells = cells + Cell(random.nextInt(width), random.nextInt(height)))
     }
 }
 
