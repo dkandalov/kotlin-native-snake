@@ -1,3 +1,5 @@
+@file:Suppress("EXPERIMENTAL_API_USAGE", "EXPERIMENTAL_UNSIGNED_LITERALS")
+
 import Direction.*
 import cnames.structs.SDL_Renderer
 import cnames.structs.SDL_Texture
@@ -9,7 +11,7 @@ import sdl.*
 import kotlin.math.max
 import kotlin.random.Random
 
-fun main(args: Array<String>) = memScoped {
+fun main() = memScoped {
     val initialGame = Game(
         width = 20,
         height = 10,
@@ -29,7 +31,7 @@ fun main(args: Array<String>) = memScoped {
 
         sdlUI.draw(game)
 
-        sdlUI.delay(1000 / 60)
+        sdlUI.delay(1000u / 60u)
         ticks++
         if (ticks >= speed) {
             game = game.update()
@@ -69,7 +71,7 @@ class SdlUI(width: Int, height: Int) {
         }
         arena.defer { SDL_Quit() }
 
-        window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, pixelWidth, pixelHeight, SDL_WINDOW_SHOWN).failOnError()
+        window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_CENTERED.toInt(), SDL_WINDOWPOS_CENTERED.toInt(), pixelWidth, pixelHeight, SDL_WINDOW_SHOWN).failOnError()
         arena.defer { SDL_DestroyWindow(window) }
 
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED or SDL_RENDERER_PRESENTVSYNC).failOnError()
@@ -81,7 +83,7 @@ class SdlUI(width: Int, height: Int) {
 
     fun draw(game: Game) = memScoped {
         SDL_RenderClear(renderer)
-        SDL_SetRenderDrawColor(renderer, 200 / 2, 230 / 2, 151 / 2, SDL_ALPHA_OPAQUE.toByte())
+        SDL_SetRenderDrawColor(renderer, (200 / 2).toUByte(), (230 / 2).toUByte(), (151 / 2).toUByte(), SDL_ALPHA_OPAQUE.toUByte())
 
         val grassW = 256
         val grassScaledW = 400 // scale grass up to reduce its resolution so that it's similar to snake sprites
@@ -148,7 +150,7 @@ class SdlUI(width: Int, height: Int) {
         SDL_RenderPresent(renderer)
     }
 
-    fun delay(timeMs: Int) {
+    fun delay(timeMs: UInt) {
         SDL_Delay(timeMs)
     }
 
@@ -265,7 +267,7 @@ class SdlUI(width: Int, height: Int) {
         }
 
         fun render(char: Char, cellRect: SDL_Rect) {
-            val charRect = letters[char.toUpperCase()] ?: letters[' ']!!
+            val charRect = letters[char.toUpperCase()] ?: (letters[' '] ?: error(""))
             SDL_RenderCopy(renderer, texture, charRect.ptr, cellRect.ptr)
         }
 

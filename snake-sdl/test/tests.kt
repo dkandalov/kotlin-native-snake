@@ -58,8 +58,8 @@ class SnakeTests {
 
 class ApplesTests {
     @Test fun `apples grow at random locations`() {
-        Random.seed = 42
-        val apples = Apples(fieldWidth = 20, fieldHeight = 10)
+        val random = Random(seed = 42)
+        val apples = Apples(fieldWidth = 20, fieldHeight = 10, random = random)
 
         assertEquals(
             actual = apples.grow().grow().grow().cells,
